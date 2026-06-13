@@ -1,13 +1,19 @@
+html {
+  background-color: #222;
+}
 h1 {
   font-family: sans-serif;
+  color:antiquewhite;
   margin: auto;
 }
 h2 {
   font-family: sans-serif;
+  color:antiquewhite;
   margin: auto;
 }
 p {
   font-family: sans-serif;
+  color:antiquewhite;
 }
 a {
   font-family: sans-serif;
