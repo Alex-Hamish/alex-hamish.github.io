@@ -22,3 +22,14 @@ th, td {
     border: 1px solid black;
     padding: 8px;
 }
+#rotate-target {
+  /* Smooth animation transition */
+  transition: transform 0.3s ease; 
+  /* Ensures rotation happens from the center of the element */
+  transform-origin: center; 
+}
+
+/* Class to be toggled by JavaScript */
+.rotated {
+  transform: rotate(180deg);
+}
