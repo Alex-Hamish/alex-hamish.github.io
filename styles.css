@@ -18,6 +18,3 @@ p {
 a {
   font-family: sans-serif;
 }
-.gridequal {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
