@@ -18,10 +18,12 @@ function overflow(num) {
     return a;
 };
 function exe(line) {
+    console.log(line);
     let instrs = line.split(" ");
     let opcode = instrs[0];
     let s1 = parseInt(instrs[1], 16);
     let s2 = parseInt(instrs[2], 16);
+    console.log(opcode + s1 + s2);
     switch(opcode) {
         case "CLS":
             regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
@@ -77,7 +79,7 @@ function compile(){
     let lines = asms.innerHTML.split('\n');
     for (pc = 0; pc < lines.length; pc++) {
         exe(lines[pc]);
-        mem.innerHTML = regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"];
+        console.log(regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"]);
 
     }
 }
