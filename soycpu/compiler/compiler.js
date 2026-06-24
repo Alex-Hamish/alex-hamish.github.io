@@ -3,10 +3,13 @@
 
 
 
-const mem = new Uint8Array(65536);;
+let mem = new Uint8Array(65536); // mem changes
+
 let regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
 let pc = 0;
 let running = true;
+const asms = document.getElementById("asms") // never chaners
+const mem = document.getElementById("txtw");;
 function overflow(num) {
     let a = num;
     while (a > 255){
@@ -68,5 +71,12 @@ function exe(line) {
 }
 
 function compile(){
-    
+    regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
+    pc = 0;
+    running = true;
+    let lines = asms.innerHTML.split('\n');
+    for (pc = 0; pc < lines.length; pc++) {
+        exe(lines[pc]);
+
+    }
 }

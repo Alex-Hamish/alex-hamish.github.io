@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../styles.css">
+    <script src="compiler.js" defer></script>
     <title>Compiler</title>
 </head>
 <body>
@@ -368,12 +369,12 @@
     <div style="display: flex; gap: 10px;">
         <div style="background: lightblue;">
             <p>type asm here</p>
-            <textarea cols="100" rows="30" style="resize: none;"></textarea>
-            <button id = comipierl>Compile!</button>
+            <textarea cols="100" rows="30" style="resize: none;" id="asms"></textarea>
+            <button onclick="compile()">Compile!</button>
         </div> 
         <div style="background: lightcoral;">
             <p>This is the program if you read mem 0 to 32</p>
-            <p></p>
+            <span style="background-color: burlywood;"><p id ="txtw"></p></span>
         </div>
     </div>
 
