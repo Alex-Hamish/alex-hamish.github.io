@@ -77,6 +77,7 @@ function compile(){
     let lines = asms.innerHTML.split('\n');
     for (pc = 0; pc < lines.length; pc++) {
         exe(lines[pc]);
+        mem.innerHTML = regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"];
 
     }
 }
