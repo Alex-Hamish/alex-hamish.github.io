@@ -83,3 +83,11 @@ function compile(){
 
     }
 }
+
+const btn = document.getElementById("copmepi");
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (btn) {
+    btn.addEventListener("click", compile); 
+  }
+});
