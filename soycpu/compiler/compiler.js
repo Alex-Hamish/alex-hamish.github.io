@@ -9,7 +9,7 @@ let regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
 let pc = 0;
 let running = true;
 const asms = document.getElementById("asms") // never chaners
-const memi = document.getElementById("txtw");;
+const memi = document.getElementById("txtw");
 function overflow(num) {
     let a = num;
     while (a > 255){
