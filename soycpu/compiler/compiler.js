@@ -161,18 +161,16 @@ function compile(){
     regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
     pc = 0;
     running = true;
-    console.log(asms.value);
     let lines = asms.value.trim().split(/\r?\n/).filter(Boolean);
 
     while (running && pc < lines.length) {
         const prevPc = pc;
         exe(lines[pc]);
-
+        // memi is a <p> element that reads mem bytes 0 to 32 and then displays them in text format
+        memi.value = `${Array.from(mem.slice(0, 32)).map(byte => byte.toString(16).padStart(2, '0')).join(' ')}`;
         if (running && pc === prevPc) {
             pc += 1;
         }
-
-        console.log(regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"]);
     }
 }
 
