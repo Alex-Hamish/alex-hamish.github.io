@@ -200,14 +200,14 @@ const screenRadio = document.getElementById("screen");
 const screen = document.getElementById("screen");
 const ctx = screen.getContext("2d")
 
-txt.addEventListener("change", function() {
+txt.addEventListener("click", function() {
     if (txt.checked) {
         texto.style.display = "block";
         screeno.style.display = "none";
     }
 });
 
-screenRadio.addEventListener("change", function() {
+screenRadio.addEventListener("click", function() {
     if (screenRadio.checked) {
         texto.style.display = "none";
         screeno.style.display = "block";
