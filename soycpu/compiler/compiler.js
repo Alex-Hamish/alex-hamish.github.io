@@ -6,11 +6,13 @@
 let mem = new Uint8Array(65536); // mem changes
 let stack = []; // stack :p.
 
+let outputtype = 0
 let regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
 let pc = 0;
 let running = true;
 const asms = document.getElementById("asms") // never chaners
 const memi = document.getElementById("txtw");
+const screen = document.getElementById("screen");
 function overflow(num) {
     let a = num;
     while (a > 255) {
@@ -172,15 +174,39 @@ function compile(){
     regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
     pc = 0;
     running = true;
+    const ctx = screen.getContext("2d");
+    ctx.clearRect(0, 0, screen.width, screen.height);
     let lines = asms.value.trim().split(/\r?\n/).filter(Boolean);
+    if(outputtype == 0){
+        while (running && pc < lines.length) {
+            const prevPc = pc;
+            exe(lines[pc]);
+            // memi is a <p> element that reads mem bytes 0 to 32 and then displays them in ascii format
+            memi.textContent = `${Array.from(mem.slice(0, 32)).map(byte => String.fromCharCode(byte)).join('')}`;
+            if (running && pc === prevPc) {
+                pc += 1;
+            }
+        }
+    } else if(outputtype == 1){
+        while (running && pc < lines.length) {
+            const prevPc = pc;
+            exe(lines[pc]);
+            // screen is a 64x64 <canvas> element that reads mem bytes 0 to 512 and then displays them in b& wpixel format
+            // we've FUCKING CLEARED THE SCREEN AT THE START OF THE COMPILE FUNCTION SO WE DONT HAVE TO WORRY ABOUT IT
+            const imageData = ctx.createImageData(64, 64);
+            for (let i = 0; i < 512; i++) {
+                const pixelValue = mem[i];
+                const color = pixelValue === 0 ? 0 : 255; // black or white
+                imageData.data[i * 4] = color;     // Red
+                imageData.data[i * 4 + 1] = color; // Green
+                imageData.data[i * 4 + 2] = color; // Blue
+                imageData.data[i * 4 + 3] = 255;   // Alpha
+            }
+            ctx.putImageData(imageData, 0, 0);
 
-    while (running && pc < lines.length) {
-        const prevPc = pc;
-        exe(lines[pc]);
-        // memi is a <p> element that reads mem bytes 0 to 32 and then displays them in ascii format
-        memi.textContent = `${Array.from(mem.slice(0, 32)).map(byte => String.fromCharCode(byte)).join('')}`;
-        if (running && pc === prevPc) {
-            pc += 1;
+            if (running && pc === prevPc) {
+                pc += 1;
+            }
         }
     }
 }
@@ -197,14 +223,16 @@ const screeno = document.getElementById("screeno");
 const texto = document.getElementById("texto");
 const txt = document.getElementById("txt");
 const scree = document.getElementById("screenth");
-const screen = document.getElementById("screen");
+
 
 txt.addEventListener("click", function() {
+    outputtype = 0
     texto.style.display = "block";
     screeno.style.display = "none";
 });
 
 scree.addEventListener("click", function() {
+    outputtype = 1
     texto.style.display = "none";
     screeno.style.display = "block";
 });
