@@ -76,6 +76,7 @@ function compile(){
     regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
     pc = 0;
     running = true;
+    console.log(asms.innerHTML);
     let lines = asms.innerHTML.trim().split(/\r?\n/);
     for (pc = 0; pc < lines.length; pc++) {
         exe(lines[pc]);
