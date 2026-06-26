@@ -46,7 +46,6 @@ function exe(line) {
             break;
         case "HLT":
             running = false;
-            pc = 0
             break;
         case "JMP":
             pc = s1;
@@ -78,10 +77,12 @@ function compile(){
     running = true;
     console.log(asms.value);
     let lines = asms.value.trim().split(/\r?\n/);
-    for (pc = 0; pc < lines.length; pc++) {
-        exe(lines[pc]);
-        console.log(regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"]);
+    while(running) {
+        while(pc < lines.length) {
+            exe(lines[pc]);
+            console.log(regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"]);
 
+        }
     }
 }
 
