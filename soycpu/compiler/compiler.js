@@ -51,20 +51,20 @@ function exe(line) {
         case "JMP":
             pc = s1;
             break;
-        case JYZ:
+        case "JYZ":
             if (reg[instrs[1]] == 0){
                 pc = s2;
             }
             break;
-        case JNZ:
+        case "JNZ":
             if (reg[instrs[1]] != 0){
                 pc = s2;
             }
             break;
-        case INC:
+        case "INC":
             reg[instrs[1]] =+ 1
             break;
-        case DEC:
+        case "DEC":
             reg[instrs[1]] =- 1
             break;
     // WORK PLEASE
