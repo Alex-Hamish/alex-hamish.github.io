@@ -150,6 +150,17 @@ function exe(line) {
         case "NOT":
             regs[instrs[1]] = overflow(~regs[instrs[2]]);
             break;
+        case "NOP":
+            // do nothing
+            break;
+        case "LOD":
+            // load from memory
+            regs[instrs[1]] = mem[s2];
+            break;
+        case "SOR":
+            // store to memory
+            mem[s1] = regs[instrs[2]];
+            break;
         default:
             console.error(`Unknown opcode: ${opcode}`);
             running = false;
