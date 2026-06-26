@@ -70,13 +70,13 @@ function exe(line) {
 }
 }
 
-stahp: function compile(){
+function compile(){
     regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
     pc = 0;
     running = true;
     console.log(asms.value);
     let lines = asms.value.trim().split(/\r?\n/);
-    while(running) {
+    stahp: while(running) {
         while(pc < lines.length) {
             exe(lines[pc]);
             console.log(regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"]);
