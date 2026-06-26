@@ -196,20 +196,15 @@ document.addEventListener("DOMContentLoaded", () => {
 const screeno = document.getElementById("screeno");
 const texto = document.getElementById("texto");
 const txt = document.getElementById("txt");
-const screenRadio = document.getElementById("screen");
+const scree = document.getElementById("screenth");
 const screen = document.getElementById("screen");
-const ctx = screen.getContext("2d")
 
 txt.addEventListener("click", function() {
-    if (txt.checked) {
-        texto.style.display = "block";
-        screeno.style.display = "none";
-    }
+    texto.style.display = "block";
+    screeno.style.display = "none";
 });
 
-screenRadio.addEventListener("click", function() {
-    if (screenRadio.checked) {
-        texto.style.display = "none";
-        screeno.style.display = "block";
-    }
+scree.addEventListener("click", function() {
+    texto.style.display = "none";
+    screeno.style.display = "block";
 });
