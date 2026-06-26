@@ -70,7 +70,7 @@ function exe(line) {
 }
 }
 
-function compile(){
+stahp: function compile(){
     regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
     pc = 0;
     running = true;
@@ -84,7 +84,7 @@ function compile(){
         }
         if (lines[pc].split(" ")[0] == "HLT"){
             running = false;
-            break
+            break stahp;
         }
     }
 }
