@@ -111,7 +111,44 @@ function exe(line) {
         case "PSH":
             stack.push(regs[instrs[1]]);
             break;
-        case "NOP":
+        case "SWP":
+            let temp = regs[instrs[1]];
+            regs[instrs[1]] = regs[instrs[2]];
+            regs[instrs[2]] = temp;
+            break;
+        case "FLP":
+            // flip the bits of the register
+            regs[instrs[1]] = overflow(~regs[instrs[1]]);
+            break;
+        case "COM":
+            // comment thingy
+            break;
+        case "SOY":
+            // soy the register
+            regs[instrs[1]] = 0xFF;
+            break;
+        case "BLAHAJ":
+            // i love the blahaaj shark plushie from ikea
+            break;
+        case "BSL":
+            // bit shift left
+            regs[instrs[1]] = overflow(regs[instrs[1]] << s2);
+            break;
+        case "BSR":
+            // bit shift right
+            regs[instrs[1]] = overflow(regs[instrs[1]] >> s2);
+            break;
+        case "AND":
+            regs[instrs[1]] = overflow(regs[instrs[2]] & regs[instrs[3]]);
+            break;
+        case "ORR":
+            regs[instrs[1]] = overflow(regs[instrs[2]] | regs[instrs[3]]);
+            break;
+        case "XOR":
+            regs[instrs[1]] = overflow(regs[instrs[2]] ^ regs[instrs[3]]);
+            break;
+        case "NOT":
+            regs[instrs[1]] = overflow(~regs[instrs[2]]);
             break;
         default:
             console.error(`Unknown opcode: ${opcode}`);
