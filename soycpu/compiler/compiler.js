@@ -4,6 +4,7 @@
 
 
 let mem = new Uint8Array(65536); // mem changes
+let stack = []; // stack :p.
 
 let regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
 let pc = 0;
@@ -62,6 +63,59 @@ function exe(line) {
             break;
         case "DEC":
             regs[instrs[1]] = overflow(regs[instrs[1]] - 1);
+            break;
+        case "SYS":
+            // reserved for future use
+            // also a ground for my sanity to be questioned
+            // FUCK
+            // i think i have autism
+            // i am really into planes.
+            // i have a lot of knowledge about planes.
+            // have you heard of the Boeing 747?
+            // lego made a lego set with the 747 and the space shuttle and i built it so yippee!
+            // hapsburmger
+            // yeah ok i need to fucking actually do shit
+        case "SKP":
+            pc += s1;
+            break;
+        case "SKR":
+            pc += regs[instrs[1]];
+            break;
+        case "SKB":
+            pc -= s1;
+            break;
+        case "SBR":
+            pc -= regs[instrs[1]];
+            break;
+        case "ADR":
+            regs[instrs[1]] = overflow(regs[instrs[2]] + regs[instrs[3]]);
+            break;
+        case "SBR":
+            regs[instrs[1]] = overflow(regs[instrs[2]] - regs[instrs[3]]);
+            break;
+        case "MUL":
+            regs[instrs[1]] = overflow(regs[instrs[2]] * s2);
+            break;
+        case "DIV":
+            regs[instrs[1]] = overflow(parseInt(regs[instrs[2]] / s2));
+            break;
+        case "MLR":
+            regs[instrs[1]] = overflow(regs[instrs[2]] * regs[instrs[3]]);
+            break;
+        case "DVR":
+            regs[instrs[1]] = overflow(parseInt(regs[instrs[2]] / regs[instrs[3]]));
+            break;
+        case "POP":
+            regs[instrs[1]] = stack.pop();
+            break;
+        case "PSH":
+            stack.push(regs[instrs[1]]);
+            break;
+        case "NOP":
+            break;
+        default:
+            console.error(`Unknown opcode: ${opcode}`);
+            running = false;
             break;
     }
 }
