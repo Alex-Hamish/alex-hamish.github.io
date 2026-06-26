@@ -191,7 +191,7 @@ function compile(){
         while (running && pc < lines.length) {
             const prevPc = pc;
             exe(lines[pc]);
-            // screen is a 64x64 <canvas> element that reads mem bytes 0 to 512 and then displays them in b& wpixel format
+            // screen is a 64x64 <canvas> element that reads mem bytes 0 to 512 and then displays them in b&w pixel format
             // we've FUCKING CLEARED THE SCREEN AT THE START OF THE COMPILE FUNCTION SO WE DONT HAVE TO WORRY ABOUT IT
             const imageData = ctx.createImageData(64, 64);
             for (let i = 0; i < 512; i++) {
