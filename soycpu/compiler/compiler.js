@@ -76,9 +76,8 @@ function compile(){
     regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
     pc = 0;
     running = true;
-    console.log(asms.innerHTML);
-    console.log(asms.innerText);
-    let lines = asms.innerHTML.trim().split(/\r?\n/);
+    console.log(asms.value);
+    let lines = asms.value.trim().split(/\r?\n/);
     for (pc = 0; pc < lines.length; pc++) {
         exe(lines[pc]);
         console.log(regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"]);
