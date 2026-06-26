@@ -77,6 +77,7 @@ function compile(){
     pc = 0;
     running = true;
     console.log(asms.innerHTML);
+    console.log(asms.innerText);
     let lines = asms.innerHTML.trim().split(/\r?\n/);
     for (pc = 0; pc < lines.length; pc++) {
         exe(lines[pc]);
