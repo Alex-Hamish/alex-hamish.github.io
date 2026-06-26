@@ -23,7 +23,6 @@ function exe(line) {
     let opcode = instrs[0];
     let s1 = parseInt(instrs[1], 16);
     let s2 = parseInt(instrs[2], 16);
-    console.log(opcode + s1 + s2);
     switch(opcode) {
         case "CLS":
             regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
@@ -82,6 +81,10 @@ function compile(){
             exe(lines[pc]);
             console.log(regs["F1"] + " " + regs["F2"] + " " + regs["F3"] + " " + regs["F4"] + " " + regs["F5"] + " " + regs["F6"] + " " + regs["F7"] + " " + regs["F8"]);
 
+        }
+        if (lines[pc].split(" ")[0] == "HLT"){
+            running = false;
+            break
         }
     }
 }
