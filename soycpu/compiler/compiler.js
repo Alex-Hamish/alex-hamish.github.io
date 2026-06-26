@@ -176,8 +176,8 @@ function compile(){
     while (running && pc < lines.length) {
         const prevPc = pc;
         exe(lines[pc]);
-        // memi is a <p> element that reads mem bytes 0 to 32 and then displays them in text format
-        memi.textContent = `${Array.from(mem.slice(0, 32)).map(byte => byte.toString(16).padStart(2, '0')).join(' ')}`;
+        // memi is a <p> element that reads mem bytes 0 to 32 and then displays them in ascii format
+        memi.textContent = `${Array.from(mem.slice(0, 32)).map(byte => String.fromCharCode(byte)).join('')}`;
         if (running && pc === prevPc) {
             pc += 1;
         }
