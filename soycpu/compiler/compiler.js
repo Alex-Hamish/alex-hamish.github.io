@@ -29,20 +29,20 @@ function exe(line) {
             regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
             break;
         case "MOV":
-            reg[instrs[1]] = s2;
-            reg[instrs[1]] = overflow(reg[instrs[1]]);
+            regs[instrs[1]] = s2;
+            regs[instrs[1]] = overflow(reg[instrs[1]]);
             break;
         case "ADD":
-            reg[instrs[1]] += s2;
-            reg[instrs[1]] = overflow(reg[instrs[1]]);
+            regs[instrs[1]] += s2;
+            regs[instrs[1]] = overflow(reg[instrs[1]]);
             break;
         case "SUB":
-            reg[instrs[1]] -= s2;
-            reg[instrs[1]] = overflow(reg[instrs[1]]);
+            regs[instrs[1]] -= s2;
+            regs[instrs[1]] = overflow(reg[instrs[1]]);
             break;
         case "COP":
-            reg[instrs[1]] = ref[instrs[2]];
-            reg[instrs[1]] = overflow(reg[instrs[1]]);
+            regs[instrs[1]] = ref[instrs[2]];
+            regs[instrs[1]] = overflow(reg[instrs[1]]);
             break;
         case "HLT":
             running = false;
@@ -52,20 +52,20 @@ function exe(line) {
             pc = s1;
             break;
         case "JYZ":
-            if (reg[instrs[1]] == 0){
+            if (regs[instrs[1]] == 0){
                 pc = s2;
             }
             break;
         case "JNZ":
-            if (reg[instrs[1]] != 0){
+            if (regs[instrs[1]] != 0){
                 pc = s2;
             }
             break;
         case "INC":
-            reg[instrs[1]] =+ 1
+            regs[instrs[1]] =+ 1
             break;
         case "DEC":
-            reg[instrs[1]] =- 1
+            regs[instrs[1]] =- 1
             break;
     // WORK PLEASE
     break;
