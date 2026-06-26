@@ -192,16 +192,29 @@ function compile(){
             const prevPc = pc;
             exe(lines[pc]);
             // screen is a 64x64 <canvas> element that reads mem bytes 0 to 512 and then displays them in b&w pixel format
-            // we've FUCKING CLEARED THE SCREEN AT THE START OF THE COMPILE FUNCTION SO WE DONT HAVE TO WORRY ABOUT IT
+            // each byte contributes 8 pixels, and every 8 bytes make one row of 64 pixels
             const imageData = ctx.createImageData(64, 64);
+            const pixels = imageData.data;
+
             for (let i = 0; i < 512; i++) {
-                const pixelValue = mem[i];
-                const color = pixelValue === 0 ? 0 : 255; // black or white
-                imageData.data[i * 4] = color;     // Red
-                imageData.data[i * 4 + 1] = color; // Green
-                imageData.data[i * 4 + 2] = color; // Blue
-                imageData.data[i * 4 + 3] = 255;   // Alpha
+                const byte = mem[i];
+                const row = Math.floor(i / 8);
+                const colByte = i % 8;
+
+                for (let bit = 0; bit < 8; bit++) {
+                    const x = colByte * 8 + bit;
+                    const y = row;
+                    const pixelIndex = (y * 64 + x) * 4;
+                    const isOn = (byte >> (7 - bit)) & 1;
+                    const value = isOn ? 255 : 0;
+
+                    pixels[pixelIndex] = value;
+                    pixels[pixelIndex + 1] = value;
+                    pixels[pixelIndex + 2] = value;
+                    pixels[pixelIndex + 3] = 255;
+                }
             }
+
             ctx.putImageData(imageData, 0, 0);
 
             if (running && pc === prevPc) {
