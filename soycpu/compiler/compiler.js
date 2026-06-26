@@ -30,19 +30,19 @@ function exe(line) {
             break;
         case "MOV":
             regs[instrs[1]] = s2;
-            regs[instrs[1]] = overflow(reg[instrs[1]]);
+            regs[instrs[1]] = overflow(regs[instrs[1]]);
             break;
         case "ADD":
             regs[instrs[1]] += s2;
-            regs[instrs[1]] = overflow(reg[instrs[1]]);
+            regs[instrs[1]] = overflow(regs[instrs[1]]);
             break;
         case "SUB":
             regs[instrs[1]] -= s2;
-            regs[instrs[1]] = overflow(reg[instrs[1]]);
+            regs[instrs[1]] = overflow(regs[instrs[1]]);
             break;
         case "COP":
             regs[instrs[1]] = ref[instrs[2]];
-            regs[instrs[1]] = overflow(reg[instrs[1]]);
+            regs[instrs[1]] = overflow(regs[instrs[1]]);
             break;
         case "HLT":
             running = false;
