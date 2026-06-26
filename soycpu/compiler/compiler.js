@@ -20,7 +20,6 @@ function overflow(num) {
 }
 
 function exe(line) {
-    console.log(line);
     let instrs = line.split(" ");
     let opcode = instrs[0];
     let s1 = parseInt(instrs[1], 16);
@@ -178,7 +177,7 @@ function compile(){
         const prevPc = pc;
         exe(lines[pc]);
         // memi is a <p> element that reads mem bytes 0 to 32 and then displays them in text format
-        memi.value = `${Array.from(mem.slice(0, 32)).map(byte => byte.toString(16).padStart(2, '0')).join(' ')}`;
+        memi.textContent = `${Array.from(mem.slice(0, 32)).map(byte => byte.toString(16).padStart(2, '0')).join(' ')}`;
         if (running && pc === prevPc) {
             pc += 1;
         }
