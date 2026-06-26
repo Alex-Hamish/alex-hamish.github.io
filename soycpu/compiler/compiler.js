@@ -192,3 +192,24 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", compile); 
   }
 });
+
+const screeno = document.getElementById("screeno");
+const texto = document.getElementById("texto");
+const txt = document.getElementById("txt");
+const screenRadio = document.getElementById("screen");
+const screen = document.getElementById("screen");
+const ctx = screen.getContext("2d")
+
+txt.addEventListener("change", function() {
+    if (txt.checked) {
+        texto.style.display = "block";
+        screeno.style.display = "none";
+    }
+});
+
+screenRadio.addEventListener("change", function() {
+    if (screenRadio.checked) {
+        texto.style.display = "none";
+        screeno.style.display = "block";
+    }
+});

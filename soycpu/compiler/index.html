@@ -377,40 +377,16 @@ SOR 0003 F1</textarea>
                 <input type="radio" id="screen" name="fav_language" value="SCREEN">
                 <label for="screen">SCREEN</label><br>
             </form>
-            <div id="texto" style="display: none;">
+            <div id="texto" style="display: block;">
                 <p>This is the program if you read mem 0 to 32</p>
                 <div style="background-color: burlywood;"><p id ="txtw">0, 0, 0, 0, 0, 0, 0, 0</p></div>
             </div>
-            <div id="screeno" style="display: block;">
+            <div id="screeno" style="display: none;">
                 <p>This is the program if you read mem 0 to 32</p>
                 <div style="background-color: burlywood;">
                     <canvas id="screen" width="256" height="256"></canvas>
                 </div>
             </div>
-            <script>
-                const screeno = document.getElementById("screeno");
-                const texto = document.getElementById("texto");
-                const txt = document.getElementById("txt");
-                const screen = document.getElementById("screen");
-                const ctx = screen.getContext("2d");
-
-                screeno.style.display = "none";
-
-                txt.addEventListener("change", function() {
-                    if (txt.checked) {
-                        texto.style.display = "block";
-                        screeno.style.display = "none";
-                    }
-                });
-
-                const screenRadio = document.getElementById("screen");
-                screenRadio.addEventListener("change", function() {
-                    if (screenRadio.checked) {
-                        texto.style.display = "none";
-                        screeno.style.display = "block";
-                    }
-                });
-            </script>
         </div>
     </div>
     <script src="compiler.js"></script>
