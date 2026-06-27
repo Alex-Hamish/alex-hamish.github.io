@@ -385,7 +385,7 @@ SOR 0003 F1</textarea>
                     <canvas id="screen" width="64" height="64" style="margin: auto; width: 256px; height: 256px; image-rendering: -moz-crisp-edges; image-rendering: pixelated;"></canvas>
                 </div>
             </div>
-            <div style="background: lightgreen;">
+            <div style="background:goldenrod;">
                 <p>Input</p>
                 <p>Text Input (Mem 513-545)</p>
                 <input type="text" maxlength="32" id="tIInput" placeholder="Type here...">
@@ -431,6 +431,56 @@ SOR 0003 F1</textarea>
                         </label> 
                     </form>
                 </div>
+            </div>
+            <div>
+                <p>Tools</p>
+                <p>Num to Num</p>
+                <!-- You can interchange between bin, dec and hex-->
+                <input type="text" id="num1" placeholder="Enter a number">
+                <select id="num1Type">
+                    <option value="bin">Binary</option>
+                    <option value="dec">Decimal</option>
+                    <option value="hex">Hexadecimal</option>
+                </select>
+                <p>Convert to</p>
+                <select id="num2Type">
+                    <option value="bin">Binary</option>
+                    <option value="dec">Decimal</option>
+                    <option value="hex">Hexadecimal</option>
+                </select>
+                <button id="numConvert">Convert</button>
+                <p id="numResult"></p>
+                <script>
+                    document.getElementById("numConvert").addEventListener("click", function() {
+                        const num1 = document.getElementById("num1").value;
+                        const num1Type = document.getElementById("num1Type").value;
+                        const num2Type = document.getElementById("num2Type").value;
+
+                        let decimalValue;
+
+                        // Convert input to decimal
+                        if (num1Type === "bin") {
+                            decimalValue = parseInt(num1, 2);
+                        } else if (num1Type === "dec") {
+                            decimalValue = parseInt(num1, 10);
+                        } else if (num1Type === "hex") {
+                            decimalValue = parseInt(num1, 16);
+                        }
+
+                        let result;
+
+                        // Convert decimal to desired output type
+                        if (num2Type === "bin") {
+                            result = decimalValue.toString(2);
+                        } else if (num2Type === "dec") {
+                            result = decimalValue.toString(10);
+                        } else if (num2Type === "hex") {
+                            result = decimalValue.toString(16).toUpperCase();
+                        }
+
+                        document.getElementById("numResult").textContent = `Result: ${result}`;
+                    }); // work please
+                </script>
             </div>
         </div>
     </div>
