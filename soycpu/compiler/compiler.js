@@ -1,6 +1,20 @@
 // AAAAAAH
 // this is tire ing AAA
 
+// text input that is 32 chars long and is used to input text into the memory at address 513 to 545
+const tIInput = document.getElementById("tIInput");
+
+
+// button input that is used to input a number into the memory at address 546 to 553
+const btn1 = document.getElementById("btn1");
+const btn2 = document.getElementById("btn2");
+const btn3 = document.getElementById("btn3");
+const btn4 = document.getElementById("btn4");
+const btn5 = document.getElementById("btn5");
+const btn6 = document.getElementById("btn6");
+const btn7 = document.getElementById("btn7");
+const btn8 = document.getElementById("btn8");
+
 
 
 let mem = new Uint8Array(65536); // mem changes
@@ -21,6 +35,43 @@ function overflow(num) {
     return a;
 }
 
+function Clear() {
+    regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
+    mem = new Uint8Array(65536);
+    tIInput.addEventListener("input", function() {
+    const inputText = tIInput.value;
+    for (let i = 0; i < 32; i++) {
+        mem[513 + i] = inputText.charCodeAt(i) || 0;
+    }
+    });
+    
+    btn1.addEventListener("click", function() {
+        mem[546] = btn1.checked ? 1 : 0;
+    });
+    btn2.addEventListener("click", function() {
+        mem[547] = btn2.checked ? 1 : 0;
+    });
+    btn3.addEventListener("click", function() {
+        mem[548] = btn3.checked ? 1 : 0;
+    });
+    btn4.addEventListener("click", function() {
+        mem[549] = btn4.checked ? 1 : 0;
+    });
+    btn5.addEventListener("click", function() {
+        mem[550] = btn5.checked ? 1 : 0;
+    });
+    btn6.addEventListener("click", function() {
+        mem[551] = btn6.checked ? 1 : 0;
+    });
+    btn7.addEventListener("click", function() {
+        mem[552] = btn7.checked ? 1 : 0;
+    });
+    btn8.addEventListener("click", function() {
+        mem[553] = btn8.checked ? 1 : 0;
+    });
+
+}
+
 function exe(line) {
     let instrs = line.split(" ");
     let opcode = instrs[0];
@@ -29,8 +80,7 @@ function exe(line) {
 
     switch (opcode) {
         case "CLS":
-            regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
-            mem = new Uint8Array(65536);
+            Clear();
             break;
         case "MOV":
             regs[instrs[1]] = overflow(s2);
@@ -251,46 +301,3 @@ scree.addEventListener("click", function() {
 });
 
 
-// text input that is 32 chars long and is used to input text into the memory at address 513 to 545
-const tIInput = document.getElementById("tIInput");
-tIInput.addEventListener("input", function() {
-    const inputText = tIInput.value;
-    for (let i = 0; i < 32; i++) {
-        mem[513 + i] = inputText.charCodeAt(i) || 0;
-    }
-});
-
-// button input that is used to input a number into the memory at address 546 to 553
-const btn1 = document.getElementById("btn1");
-const btn2 = document.getElementById("btn2");
-const btn3 = document.getElementById("btn3");
-const btn4 = document.getElementById("btn4");
-const btn5 = document.getElementById("btn5");
-const btn6 = document.getElementById("btn6");
-const btn7 = document.getElementById("btn7");
-const btn8 = document.getElementById("btn8");
-
-btn1.addEventListener("click", function() {
-    mem[546] = !mem[546];
-});
-btn2.addEventListener("click", function() {
-    mem[547] = !mem[547];
-});
-btn3.addEventListener("click", function() {
-    mem[548] = !mem[548];
-});
-btn4.addEventListener("click", function() {
-    mem[549] = !mem[549];
-});
-btn5.addEventListener("click", function() {
-    mem[550] = !mem[550];
-});
-btn6.addEventListener("click", function() {
-    mem[551] = !mem[551];
-});
-btn7.addEventListener("click", function() {
-    mem[552] = !mem[552];
-});
-btn8.addEventListener("click", function() {
-    mem[553] = !mem[553];
-});
