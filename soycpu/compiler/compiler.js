@@ -249,3 +249,48 @@ scree.addEventListener("click", function() {
     texto.style.display = "none";
     screeno.style.display = "block";
 });
+
+
+// text input that is 32 chars long and is used to input text into the memory at address 513 to 545
+const tIInput = document.getElementById("tIInput");
+tIInput.addEventListener("input", function() {
+    const inputText = tIInput.value;
+    for (let i = 0; i < 32; i++) {
+        mem[513 + i] = inputText.charCodeAt(i) || 0;
+    }
+});
+
+// button input that is used to input a number into the memory at address 546 to 553
+const btn1 = document.getElementById("btn1");
+const btn2 = document.getElementById("btn2");
+const btn3 = document.getElementById("btn3");
+const btn4 = document.getElementById("btn4");
+const btn5 = document.getElementById("btn5");
+const btn6 = document.getElementById("btn6");
+const btn7 = document.getElementById("btn7");
+const btn8 = document.getElementById("btn8");
+
+btn1.addEventListener("change", function() {
+    mem[546] = btn1.checked ? 1 : 0;
+});
+btn2.addEventListener("change", function() {
+    mem[547] = btn2.checked ? 1 : 0;
+});
+btn3.addEventListener("change", function() {
+    mem[548] = btn3.checked ? 1 : 0;
+});
+btn4.addEventListener("change", function() {
+    mem[549] = btn4.checked ? 1 : 0;
+});
+btn5.addEventListener("change", function() {
+    mem[550] = btn5.checked ? 1 : 0;
+});
+btn6.addEventListener("change", function() {
+    mem[551] = btn6.checked ? 1 : 0;
+});
+btn7.addEventListener("change", function() {
+    mem[552] = btn7.checked ? 1 : 0;
+});
+btn8.addEventListener("change", function() {
+    mem[553] = btn8.checked ? 1 : 0;
+});
