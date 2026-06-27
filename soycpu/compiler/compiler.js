@@ -206,7 +206,7 @@ function compile(){
                     const y = row;
                     const pixelIndex = (y * 64 + x) * 4;
                     const isOn = (byte >> (7 - bit)) & 1;
-                    const value = isOn ? 255 : 0;
+                    const value = isOn ? 0 : 255; // black for 1, white for 0
 
                     pixels[pixelIndex] = value;
                     pixels[pixelIndex + 1] = value;
