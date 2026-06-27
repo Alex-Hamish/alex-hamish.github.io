@@ -63,3 +63,44 @@ td[data-tooltip]:hover::after {
   opacity: 1;
   visibility: visible;
 }
+/* The horizontal container */
+.toggle-row {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Hide the default checkbox input */
+.square-toggle input {
+  display: none;
+}
+
+/* Style the label as a perfect square button */
+.square-toggle {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+/* The visual appearance of the button */
+.btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: sans-serif;
+  font-weight: bold;
+  border: 2px solid #ccc;
+  border-radius: 0; /* Ensures perfectly square corners */
+  transition: all 0.2s ease;
+}
+
+/* Change style when checked */
+.square-toggle input:checked + .btn-box {
+  background-color: #2196F3;
+  color: white;
+  border-color: #0d82d9;
+}
