@@ -270,27 +270,27 @@ const btn6 = document.getElementById("btn6");
 const btn7 = document.getElementById("btn7");
 const btn8 = document.getElementById("btn8");
 
-btn1.addEventListener("change", function() {
+btn1.addEventListener("click", function() {
     mem[546] = btn1.checked ? 1 : 0;
 });
-btn2.addEventListener("change", function() {
+btn2.addEventListener("click", function() {
     mem[547] = btn2.checked ? 1 : 0;
 });
-btn3.addEventListener("change", function() {
+btn3.addEventListener("click", function() {
     mem[548] = btn3.checked ? 1 : 0;
 });
-btn4.addEventListener("change", function() {
+btn4.addEventListener("click", function() {
     mem[549] = btn4.checked ? 1 : 0;
 });
-btn5.addEventListener("change", function() {
+btn5.addEventListener("click", function() {
     mem[550] = btn5.checked ? 1 : 0;
 });
-btn6.addEventListener("change", function() {
+btn6.addEventListener("click", function() {
     mem[551] = btn6.checked ? 1 : 0;
 });
-btn7.addEventListener("change", function() {
+btn7.addEventListener("click", function() {
     mem[552] = btn7.checked ? 1 : 0;
 });
-btn8.addEventListener("change", function() {
+btn8.addEventListener("click", function() {
     mem[553] = btn8.checked ? 1 : 0;
 });
