@@ -33,3 +33,33 @@ th, td {
 .rotated {
   transform: rotate(180deg);
 }
+/* 1. Prepare the cell container */
+td[data-tooltip] {
+  position: relative;
+  cursor: pointer;
+}
+
+/* 2. Create and hide the tooltip box */
+td[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%; /* Places it above the cell */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+}
+
+/* 3. Show the tooltip on hover */
+td[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}

@@ -51,37 +51,36 @@
             </tr>
             <tr>
                 <td>0</td>
-                <td>CLS</td>
-                <td>ADD</td>
-                <td>SUB</td>
-                <td>MOV</td>
-                <td>COP</td>
+                <td data-tooltip="Sets All Regs to 0 and Clears Memory">CLS</td>
+                <td data-tooltip="Adds a value to a reg">ADD</td>
+                <td data-tooltip="Subtracts a value from a reg">SUB</td>
+                <td data-tooltip="Sets a Reg to a Value">MOV</td>
+                <td data-tooltip="Copies a reg to another">COP</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>HLT</td>
-                <td>JMP</td>
-                <td>JYZ</td>
-                <td>JNZ</td>
+                <td data-tooltip="Halts the CPU">HLT</td>
+                <td data-tooltip="Jumps to a specific address">JMP</td>
+                <td data-tooltip="Jumps if the reg is zero">JYZ</td>
+                <td data-tooltip="Jumps if the reg is not zero">JNZ</td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td>1</td>
-                <td></td>
-                <td>INC</td>
-                <td>DEC</td>
-                <td>LOD</td>
-                <td>SOR</td>
-                <td></td>
+                <td data-tooltip="Increments the value in a reg">INC</td>
+                <td data-tooltip="Decrements the value in a reg">DEC</td>
+                <td data-tooltip="Loads a value from memory into a reg">LOD</td>
+                <td data-tooltip="Stores a value from a reg to memory">SOR</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>SYS</td>
-                <td>SKP</td>
-                <td>SKB</td>
+                <td></td>
+                <td data-tooltip="Calls a system function">SYS</td>
+                <td data-tooltip="Skips a certain number of instructions">SKP</td>
+                <td data-tooltip="Skips backwards a certain number of instructions">SKB</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -90,17 +89,17 @@
             <tr>
                 <td>2</td>
                 <td></td>
-                <td>MUL</td>
-                <td>DIV</td>
-                <td>POP</td>
-                <td>PSH</td>
+                <td data-tooltip="Multiplies a value by a reg">MUL</td>
+                <td data-tooltip="Divides a value by a reg">DIV</td>
+                <td data-tooltip="Pops a value from the stack">POP</td>
+                <td data-tooltip="Pushes a value onto the stack">PSH</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>SKR</td>
-                <td>SBR</td>
+                <td data-tooltip="Skips a reg's value">SKR</td>
+                <td data-tooltip="Skips backwards a reg's value">SBR</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -109,11 +108,11 @@
             <tr>
                 <td>3</td>
                 <td></td>
-                <td>ADR</td>
-                <td>SBR</td>
-                <td>SWP</td>
-                <td>FLP</td>
-                <td>BLAHAJ</td>
+                <td data-tooltip="Adds two regs and sets the first reg to the result">ADR</td>
+                <td data-tooltip="Subtracts the second reg from the first reg">SUR</td>
+                <td data-tooltip="Swaps the values of two regs">SWP</td>
+                <td data-tooltip="Flips the bits of a reg">FLP</td>
+                <td data-tooltip="I love BLÅHAJ">BLAHAJ</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -128,7 +127,7 @@
             <tr>
                 <td>4</td>
                 <td></td>
-                <td>MLR</td>
+                <td data-tooltip="Multiplies a reg by a reg">MLR</td>
                 <td>DVR</td>
                 <td></td>
                 <td></td>
@@ -351,7 +350,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>NOP</td>
+                <td data-tooltip="Does nothing">NOP</td>
             </tr>
         </table>
     </details>

@@ -92,7 +92,7 @@ function exe(line) {
         case "ADR":
             regs[instrs[1]] = overflow(regs[instrs[2]] + regs[instrs[3]]);
             break;
-        case "SBR":
+        case "SUR":
             regs[instrs[1]] = overflow(regs[instrs[2]] - regs[instrs[3]]);
             break;
         case "MUL":
