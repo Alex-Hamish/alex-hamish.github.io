@@ -38,38 +38,19 @@ function overflow(num) {
 function Clear() {
     regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
     mem = new Uint8Array(65536);
-    tIInput.addEventListener("input", function() {
     const inputText = tIInput.value;
     for (let i = 0; i < 32; i++) {
         mem[513 + i] = inputText.charCodeAt(i) || 0;
     }
-    });
     
-    btn1.addEventListener("click", function() {
-        mem[546] = btn1.checked ? 1 : 0;
-    });
-    btn2.addEventListener("click", function() {
-        mem[547] = btn2.checked ? 1 : 0;
-    });
-    btn3.addEventListener("click", function() {
-        mem[548] = btn3.checked ? 1 : 0;
-    });
-    btn4.addEventListener("click", function() {
-        mem[549] = btn4.checked ? 1 : 0;
-    });
-    btn5.addEventListener("click", function() {
-        mem[550] = btn5.checked ? 1 : 0;
-    });
-    btn6.addEventListener("click", function() {
-        mem[551] = btn6.checked ? 1 : 0;
-    });
-    btn7.addEventListener("click", function() {
-        mem[552] = btn7.checked ? 1 : 0;
-    });
-    btn8.addEventListener("click", function() {
-        mem[553] = btn8.checked ? 1 : 0;
-    });
-
+    mem[546] = btn1.checked ? 1 : 0;
+    mem[547] = btn2.checked ? 1 : 0;
+    mem[548] = btn3.checked ? 1 : 0;
+    mem[549] = btn4.checked ? 1 : 0;
+    mem[550] = btn5.checked ? 1 : 0;
+    mem[551] = btn6.checked ? 1 : 0;
+    mem[552] = btn7.checked ? 1 : 0;
+    mem[553] = btn8.checked ? 1 : 0;
 }
 
 function exe(line) {
@@ -224,6 +205,7 @@ function compile(){
     regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
     pc = 0;
     running = true;
+    Clear();
     const ctx = screen.getContext("2d");
     ctx.clearRect(0, 0, screen.width, screen.height);
     let lines = asms.value.trim().split(/\r?\n/).filter(Boolean);
@@ -298,6 +280,31 @@ scree.addEventListener("click", function() {
     outputtype = 1
     texto.style.display = "none";
     screeno.style.display = "block";
+});
+
+btn1.addEventListener("click", function() {
+    mem[546] = btn1.checked ? 1 : 0;
+});
+btn2.addEventListener("click", function() {
+    mem[547] = btn2.checked ? 1 : 0;
+});
+btn3.addEventListener("click", function() {
+    mem[548] = btn3.checked ? 1 : 0;
+});
+btn4.addEventListener("click", function() {
+    mem[549] = btn4.checked ? 1 : 0;
+});
+btn5.addEventListener("click", function() {
+    mem[550] = btn5.checked ? 1 : 0;
+});
+btn6.addEventListener("click", function() {
+    mem[551] = btn6.checked ? 1 : 0;
+});
+btn7.addEventListener("click", function() {
+    mem[552] = btn7.checked ? 1 : 0;
+});
+btn8.addEventListener("click", function() {
+    mem[553] = btn8.checked ? 1 : 0;
 });
 
 
