@@ -28,13 +28,14 @@ const asms = document.getElementById("asms") // never chaners
 const memi = document.getElementById("txtw");
 const screen = document.getElementById("screen");
 function overflow(num) {
-    
+    let a = 0;
     if (num === null) {
-      let a = 0;
+        a = 0;
+        // i'm lazy
     } else if (Number.isNaN(num)) {
-      let a = 0;
+        a = 0;
     } else {
-        let a = num;
+        a = num;
     }
     while (a > 255) {
         a -= 255;
