@@ -108,6 +108,11 @@ function exe(line) {
             // lego made a lego set with the 747 and the space shuttle and i built it so yippee!
             // hapsburmger
             // yeah ok i need to fucking actually do shit
+            if(s1 == 1){
+                console.log(regs);
+            }else if (s1 == 20{
+                console.log(mem);
+            }
         case "SKP":
             pc += s1;
             break;
