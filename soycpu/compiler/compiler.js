@@ -172,16 +172,16 @@ function exe(line) {
             regs[instrs[1]] = overflow(regs[instrs[1]] >> s2);
             break;
         case "AND":
-            regs[instrs[1]] = overflow(regs[instrs[2]] & regs[instrs[3]]);
+            regs[instrs[1]] = overflow(regs[instrs[2]] & regs[instrs[1]]);
             break;
         case "ORR":
-            regs[instrs[1]] = overflow(regs[instrs[2]] | regs[instrs[3]]);
+            regs[instrs[1]] = overflow(regs[instrs[2]] | regs[instrs[1]]);
             break;
         case "XOR":
-            regs[instrs[1]] = overflow(regs[instrs[2]] ^ regs[instrs[3]]);
+            regs[instrs[1]] = overflow(regs[instrs[2]] ^ regs[instrs[1]]);
             break;
         case "NOT":
-            regs[instrs[1]] = overflow(~regs[instrs[2]]);
+            regs[instrs[1]] = overflow(~regs[instrs[1]]);
             break;
         case "NOP":
             // do nothing
