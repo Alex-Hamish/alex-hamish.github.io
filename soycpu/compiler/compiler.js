@@ -19,7 +19,7 @@ const btn8 = document.getElementById("btn8");
 
 let mem = new Uint8Array(65536); // mem changes
 let stack = []; // stack :p.
-
+let madd = {M1:0x0000, M2:0x0000, M3:0x0000}; // memory address register
 let outputtype = 0
 let regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
 let pc = 0;
@@ -193,6 +193,34 @@ function exe(line) {
         case "SOR":
             // store to memory
             mem[s1] = regs[instrs[2]];
+            break;
+        case "MAL":
+            // load from memory address
+            regs[instrs[1]] = mem[madd[instrs[2]]];
+            break;
+        case "MAS":
+            // store to memory address
+            mem[madd[instrs[1]]] = regs[instrs[2]];
+            break;
+        case "MAD":
+            // add to memory address
+            madd[instrs[1]] = overflow(madd[instrs[1]] + regs[instrs[2]]);
+            break;
+        case "MSB":
+            // subtract from memory address
+            madd[instrs[1]] = overflow(madd[instrs[1]] - regs[instrs[2]]);
+            break;
+        case "MST":
+            // combine two regs and store them into a memory address
+            let combined = (regs[instrs[2]] << 8) | regs[instrs[3]];
+            mem[madd[instrs[1]]] = combined & 0xFF;
+            mem[madd[instrs[1]] + 1] = (combined >> 8) & 0xFF;
+            break;
+        case "MRD":
+            // set the two regs into the parts of a memory address
+            let value = (mem[madd[instrs[1]]] << 8) | mem[madd[instrs[1]] + 1];
+            regs[instrs[2]] = (value >> 8) & 0xFF;
+            regs[instrs[3]] = value & 0xFF;
             break;
         default:
             console.error(`Unknown opcode: ${opcode}`);

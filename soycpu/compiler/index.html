@@ -56,6 +56,7 @@
                 <td data-tooltip="Subtracts a value from a reg">SUB</td>
                 <td data-tooltip="Sets a Reg to a Value">MOV</td>
                 <td data-tooltip="Copies a reg to another">COP</td>
+                <td data-tooltip="Like LOD but instead Memory Address">MAL</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -74,7 +75,7 @@
                 <td data-tooltip="Decrements the value in a reg">DEC</td>
                 <td data-tooltip="Loads a value from memory into a reg">LOD</td>
                 <td data-tooltip="Stores a value from a reg to memory">SOR</td>
-                <td></td>
+                <td data-tooltip="Like SOR but instead Memory Address">MAS</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -114,8 +115,8 @@
                 <td data-tooltip="Flips the bits of a reg">FLP</td>
                 <td data-tooltip="I love BLÅHAJ">BLAHAJ</td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td data-tooltip="Adds a reg to a Memory Address">MAD</td>
+                <td data-tooltip="Subtracts a reg from a Memory Address">MSB</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -133,8 +134,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td data-tooltip="Combines two regs and stores them into a Memory Address">MST</td>
+                <td data-tooltip="Sets the two regs into the parts of a Memory Address">MRD</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -354,6 +355,9 @@
             </tr>
         </table>
     </details>
+    <p>the first line is zero, the second line is one, etc.</p>
+    <p>You have 65,536 memory locations</p>
+    <p>You have eight regs (F1-F8) and three memory addresses (M1-M3)</p>
     <h2> the compiler :o </h2>
     <div style="display: flex; gap: 10px;">
         <div style="background: lightblue;">
