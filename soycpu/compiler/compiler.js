@@ -19,7 +19,7 @@ const btn8 = document.getElementById("btn8");
 
 let mem = new Uint8Array(65536); // mem changes
 let stack = []; // stack :p.
-let madd = {M1:0x0000, M2:0x0000, M3:0x0000}; // memory address register
+let madd = {"M1":0x0000, "M2":0x0000, "M3":0x0000, "M4":0x0000}; // memory address register
 let outputtype = 0
 let regs = {"F1":0,"F2":0,"F3":0,"F4":0,"F5":0,"F6":0,"F7":0,"F8":0};
 let pc = 0;
