@@ -111,7 +111,7 @@ function exe(line) {
             console.log(s1);
             if(s1 == 1){
                 console.log(regs);
-            }else if (s1 == 20{
+            }else if (s1 == 2){
                 console.log(mem);
             }
         case "SKP":
