@@ -73,7 +73,7 @@ function exe(line) {
             regs[instrs[1]] = overflow(regs[instrs[1]] - s2);
             break;
         case "COP":
-            regs[instrs[1]] = overflow(ref[instrs[2]]);
+            regs[instrs[1]] = overflow(regs[instrs[2]]);
             break;
         case "HLT":
             running = false;
