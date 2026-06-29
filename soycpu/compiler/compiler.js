@@ -16,6 +16,13 @@ const btn7 = document.getElementById("btn7");
 const btn8 = document.getElementById("btn8");
 
 
+// funcs will be like {"NAME":{"par":[a,b,c],"partypes":[1,2,2]],"def":5}}
+let funcs = {};
+let funcstack = []; // for going back to the place in code
+let funcpar = {}; // used for calling funcs. only done before CAL
+let functemp = {}; // for creating funcs until RET
+let funcvars = {}; // literally a table of a list of funcs.
+let currpar = {};
 
 let mem = new Uint8Array(65536); // mem changes
 let stack = []; // stack :p.
@@ -235,6 +242,14 @@ function exe(line) {
             let value = (mem[madd[instrs[1]]] << 8) | mem[madd[instrs[1]] + 1];
             regs[instrs[2]] = (value >> 8) & 0xFF;
             regs[instrs[3]] = value & 0xFF;
+            break;
+        case "DEF":
+            // AAAAAA
+            functemp.name = s1;
+            functemp.par = {};
+            break;
+        case "PAR":
+            functemp.par[s2]=s1;
             break;
         default:
             console.error(`Unknown opcode: ${opcode}`);
