@@ -12,6 +12,10 @@
 <body>
     <h1 style="text-align: center;">The Implied Signs</h1>
     <script>
+        const supabase = createClient(
+          "https://mexwygrlypvndukscvdl.supabase.co",
+          "sb_publishable_FdfmVkOMYOsn-fzbk87V-Q_36a_UEub"
+        );
         const { data: { session } } = await supabase.auth.getSession();
 
         if (!session) {

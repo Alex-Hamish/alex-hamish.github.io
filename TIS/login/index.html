@@ -14,19 +14,5 @@
     <div id="loginscreen">
 
     </div>
-    <script>
-
-        const supabase = createClient(
-          "https://mexwygrlypvndukscvdl.supabase.co",
-          "sb_publishable_FdfmVkOMYOsn-fzbk87V-Q_36a_UEub"
-        );
-        const { data: { session } } = await supabase.auth.getSession();
-
-        if (!session) {
-            window.location.href = "/TIS/login?r=/start";
-        } else {
-
-        }
-    </script>
 </body>
 </html>
