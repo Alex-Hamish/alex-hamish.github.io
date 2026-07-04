@@ -10,8 +10,16 @@
     <title>The Implied Signs</title>
 </head>
 <body>
-    <h1 style="text-align: center;">The Implied Signs</h1>
+    <h1 style="text-align: center;">Login</h1>
+    <div id="loginscreen">
+
+    </div>
     <script>
+
+        const supabase = createClient(
+          "https://mexwygrlypvndukscvdl.supabase.co",
+          "sb_publishable_FdfmVkOMYOsn-fzbk87V-Q_36a_UEub"
+        );
         const { data: { session } } = await supabase.auth.getSession();
 
         if (!session) {
