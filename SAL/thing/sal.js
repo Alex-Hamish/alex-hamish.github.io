@@ -14,4 +14,6 @@ function LOAD(){
     AddText("\nStarting Load:\x1b[38;5;91m COMMANDS")
 }
 
-document.getElementById("ld1").addEventListener("click", LOAD());
+document.getElementById("ld1").addEventListener("click", function(){
+    LOAD();
+});
