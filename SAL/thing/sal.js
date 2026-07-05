@@ -1,6 +1,8 @@
 import { AnsiUp } from './ansi_up.js';
 var ansi_up = new AnsiUp();
 const car = document.getElementById("output");
+const inp = "";
+
 
 function AddText(strg){
     let f = ansi_up.ansi_to_html(strg); // Convert ANSI to HTML
@@ -8,6 +10,20 @@ function AddText(strg){
 }
 
 AddText("Starting Load...");
+
+AddText("\nStarting Load:\x1b[38;5;91m cmds \x1b[0m");
+
+function comm(strg){
+    opes = strg.split(' ');
+    opcode = opes[0];
+
+    switch(opcode){
+        case "echo":
+            AddText(opes[1]);
+    }
+}
+
+
 AddText("\nStarting Load:\x1b[38;5;91m input \x1b[0m");
 
 const input = document.getElementById("input");
@@ -21,6 +37,12 @@ input.addEventListener("keydown", e => {
 
     // Prevent the browser from typing into the textarea
     e.preventDefault();
+    if(e == "\x1b"){
+        comm(inp);
+        inp = "";
+    }
+    inp = inp + e;
+
 
     // Send the key to your terminal
 });
