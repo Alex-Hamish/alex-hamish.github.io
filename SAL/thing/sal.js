@@ -7,18 +7,13 @@ function AddText(strg){
     car.innerHTML = car.innerHTML + f; // if car is "binglien", then adding "binglein" (as strg) would make "binglienbinglein"
 }
 
-function LOAD(){
-    // Start reading stuff
-    AddText("Starting Load...");
-    AddText("\nStarting Load:\x1b[38;5;91m input");
-}
-
+AddText("Starting Load...");
+AddText("\nStarting Load:\x1b[38;5;91m input \x1b[0m");
 
 const input = document.getElementById("input");
 
 document.addEventListener("click", function(){
     input.focus();
-    LOAD();
 });
 
 input.addEventListener("keydown", e => {
