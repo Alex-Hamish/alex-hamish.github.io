@@ -6,3 +6,8 @@ html {
     font-weight: 400;
     font-style: normal;
 }
+
+#input {
+    position: fixed;
+    left: -9999px;
+}

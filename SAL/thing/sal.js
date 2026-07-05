@@ -9,11 +9,23 @@ function AddText(strg){
 
 function LOAD(){
     // Start reading stuff
-    document.getElementById("ld1").remove(); // Remove that button !!!
     AddText("Starting Load...");
     AddText("\nStarting Load:\x1b[38;5;91m input");
 }
 
-document.getElementById("ld1").addEventListener("click", function(){
+
+const input = document.getElementById("input");
+
+document.addEventListener("click", function(){
+    input.focus();
     LOAD();
-})
+});
+
+input.addEventListener("keydown", e => {
+    console.log(e.key);
+
+    // Prevent the browser from typing into the textarea
+    e.preventDefault();
+
+    // Send the key to your terminal
+});
