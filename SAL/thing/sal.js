@@ -3,7 +3,7 @@ var ansi_up = new AnsiUp();
 const car = document.getElementById("output");
 
 function AddText(strg){
-    f = ansi_up.ansi_to_html(strg); // Convert ANSI to HTML
+    let f = ansi_up.ansi_to_html(strg); // Convert ANSI to HTML
     car.innerHTML = car.innerHTML + htmlSnippet; // if car is "binglien", then adding "binglein" (as strg) would make "binglienbinglein"
 }
 
