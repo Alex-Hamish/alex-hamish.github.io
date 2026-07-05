@@ -1,4 +1,4 @@
-import { AnsiUp } from './ansi_up.js'
+import { AnsiUp } from './ansi_up.js';
 var ansi_up = new AnsiUp();
 const car = document.getElementById("output");
 
@@ -11,6 +11,9 @@ function LOAD(){
     // Start reading stuff
     document.getElementById("ld1").remove(); // Remove that button !!!
     AddText("Starting Load...");
-    AddText("\nStarting Load:\x1b[38;5;91m COMMANDS")
+    AddText("\nStarting Load:\x1b[38;5;91m COMMANDS");
 }
 
+document.getElementById("ld1").addEventListener("click", function(){
+    LOAD();
+})
