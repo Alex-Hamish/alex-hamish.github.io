@@ -97,7 +97,15 @@ input.addEventListener("keydown", e => {
         comm(inp);
         inp = "";
     }
-    inp = inp + e.key;
+    if (e.key == "Backspace") {
+        inp = inp.slice(0, -1);
+    } else if (e.key.length === 1) {
+        if (e.ctrlKey){
+            inp = inp + "^" + e.key;
+        } else {
+            inp = inp + e.key;
+        }
+    }
 
     car.innerHTML = currtext + "\n" + inp;
     // Send the key to your terminal
