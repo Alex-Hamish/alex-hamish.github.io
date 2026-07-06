@@ -68,8 +68,8 @@ AddText("\nStarting Load:\x1b[38;5;82m cmds \x1b[0m");
 
 function comm(strg){
     let opes = strg.split(' ');
-    opcode = opes[0];
-    flags = getflags(strg);
+    let opcode = opes[0];
+    let flags = getflags(strg);
     switch(opcode){
         case "echo":
             if(flags.includes("n")){
