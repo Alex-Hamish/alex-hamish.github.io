@@ -93,6 +93,7 @@ input.addEventListener("keydown", e => {
     // Prevent the browser from typing into the textarea
     e.preventDefault();
     if(e.key == "\x1b"){
+        AddText("\n" + inp);
         comm(inp);
         inp = "";
     }
