@@ -69,10 +69,20 @@ AddText("\nStarting Load:\x1b[38;5;82m cmds \x1b[0m");
 function comm(strg){
     opes = strg.split(' ');
     opcode = opes[0];
-
+    flags = getflags(strg);
     switch(opcode){
         case "echo":
-            AddText(opes[1]);
+            if(flags.includes("n")){
+                AddText(opes[1]);
+            } else {
+                AddText(opes[1] + "\n");
+            }
+            break;
+        case "clear":
+            currtext = "";
+            break;
+        default:
+            AddText("Unknown command: " + opcode + "\n");
     }
 }
 
@@ -96,8 +106,7 @@ input.addEventListener("keydown", e => {
         AddText("\n" + inp);
         comm(inp);
         inp = "";
-    }
-    if (e.key == "Backspace") {
+    } else if (e.key == "Backspace") {
         inp = inp.slice(0, -1);
     } else if (e.key.length === 1) {
         if (e.ctrlKey){
