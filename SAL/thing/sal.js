@@ -1,19 +1,20 @@
 import { AnsiUp } from './ansi_up.js';
 var ansi_up = new AnsiUp();
 const car = document.getElementById("output");
-const inp = "";
+let inp = "";
+let currtext = "";
 
 
 function AddText(strg){
     let f = ansi_up.ansi_to_html(strg); // Convert ANSI to HTML
-    car.innerHTML = car.innerHTML + f; // if car is "binglien", then adding "binglein" (as strg) would make "binglienbinglein"
+    currtext = concat(currtext, f); // if car is "binglien", then adding "binglein" (as strg) would make "binglienbinglein"
 }
 
 AddText("Starting Load...");
 
-AddText("\nStarting Load:\x1b[38;5;91m important functions \x1b[0m");
+AddText("\nStarting Load:\x1b[38;5;82m important functions \x1b[0m");
 function getflags(strg){
-    opes = strg.split(' ');
+    let opes = strg.split(' ');
     opes.splice(0);
     let a = [];
     let j = 0;
@@ -35,12 +36,35 @@ function getflags(strg){
     }
     return a; 
 }
-AddText("\nLoaded\x1b[38;5;91m getflags \x1b[0m");
 
+AddText("\nLoaded\x1b[38;5;82m getflags \x1b[0m");
 
+function getaflags(strg, flag){ // flag must be starting with a dash. instead of "a", use "-a"
+    let opes = strg.split(' ');
+    let tr = false;
+    let J = 0;
+    for(const f in opes){
+        if(f == flag){
+            if (opes[J+1][0] == "-"){
+                return opes[J+1];
+            } else {
+                return "";
+            }
+            break;
+        }
+        J++;
+    }
+    if (tr){
+        return "";
+    }
 
+}
 
-AddText("\nStarting Load:\x1b[38;5;91m cmds \x1b[0m");
+AddText("\nLoaded\x1b[38;5;82m getaflags \x1b[0m");
+
+AddText("\nLoaded\x1b[38;5;82m important functions \x1b[0m");
+
+AddText("\nStarting Load:\x1b[38;5;82m cmds \x1b[0m");
 
 function comm(strg){
     opes = strg.split(' ');
@@ -52,14 +76,15 @@ function comm(strg){
     }
 }
 
-AddText("\nDone Load:\x1b[38;5;91m cmds \x1b[0m");
+AddText("\nDone Load:\x1b[38;5;82m cmds \x1b[0m");
 
-AddText("\nStarting Load:\x1b[38;5;91m input \x1b[0m");
+AddText("\nStarting Load:\x1b[38;5;82m input \x1b[0m");
 
 const input = document.getElementById("input");
 
 document.addEventListener("click", function(){
     input.focus();
+    car.innerHTML = currtext + "\n" + inp;
 });
 
 input.addEventListener("keydown", e => {
@@ -73,6 +98,6 @@ input.addEventListener("keydown", e => {
     }
     inp = inp + e;
 
-
+    car.innerHTML = currtext + "\n" + inp;
     // Send the key to your terminal
 });
