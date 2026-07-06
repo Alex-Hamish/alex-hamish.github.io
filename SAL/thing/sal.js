@@ -7,7 +7,7 @@ let currtext = "";
 
 function AddText(strg){
     let f = ansi_up.ansi_to_html(strg); // Convert ANSI to HTML
-    currtext = concat(currtext, f); // if car is "binglien", then adding "binglein" (as strg) would make "binglienbinglein"
+    currtext = currtext + f; // if car is "binglien", then adding "binglein" (as strg) would make "binglienbinglein"
 }
 
 AddText("Starting Load...");
