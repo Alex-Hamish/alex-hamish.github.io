@@ -72,14 +72,16 @@ function comm(strg){
     let flags = getflags(strg);
     switch(opcode){
         case "echo":
-            if(flags.includes("n")){
-                AddText(opes[1]);
-            } else {
-                AddText(opes[1] + "\n");
-            }
+            AddText(opes.slice(1).join(' '));
             break;
         case "clear":
             currtext = "";
+            break;
+        case "help":
+            AddText("Available commands:\n");
+            AddText("echo: Echoes the input back to the terminal.\n");
+            AddText("clear: Clears the terminal.\n");
+            AddText("help: Displays this help message.\n");
             break;
         default:
             AddText("Unknown command: " + opcode + "\n");
@@ -104,7 +106,7 @@ input.addEventListener("keydown", e => {
     e.preventDefault();
     if(e.key == "Enter"){
         AddText("\n" + inp + "\n"); // Add the input to the output
-        comm(inp); // commnad hsit
+        comm(inp); // command shit
         inp = "";
     } else if (e.key == "Backspace") {
         inp = inp.slice(0, -1);
