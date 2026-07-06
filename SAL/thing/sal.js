@@ -92,11 +92,11 @@ input.addEventListener("keydown", e => {
 
     // Prevent the browser from typing into the textarea
     e.preventDefault();
-    if(e == "\x1b"){
+    if(e.key == "\x1b"){
         comm(inp);
         inp = "";
     }
-    inp = inp + e;
+    inp = inp + e.key;
 
     car.innerHTML = currtext + "\n" + inp;
     // Send the key to your terminal
