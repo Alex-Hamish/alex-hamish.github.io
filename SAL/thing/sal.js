@@ -67,7 +67,7 @@ AddText("\nLoaded\x1b[38;5;82m important functions \x1b[0m");
 AddText("\nStarting Load:\x1b[38;5;82m cmds \x1b[0m");
 
 function comm(strg){
-    opes = strg.split(' ');
+    let opes = strg.split(' ');
     opcode = opes[0];
     flags = getflags(strg);
     switch(opcode){
