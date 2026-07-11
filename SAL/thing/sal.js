@@ -62,6 +62,49 @@ function getaflags(strg, flag){ // flag must be starting with a dash. instead of
 
 AddText("\nLoaded\x1b[38;5;82m getaflags \x1b[0m");
 
+function getarg(strg, pos){ // pos is the position (starting from 0), so if you want the command, use pos = 0. strings also shoudl work
+    let opes = strg.split(" ");
+    let ret = [];
+
+    let temp = "";
+    let inQuote = false;
+
+    for (const f of opes) {
+        if (!inQuote) {
+            if (f.startsWith("'") || f.startsWith('"')) {
+                temp = f;
+                inQuote = true;
+
+                // handles: 'hello'
+                if (f.endsWith("'") || f.endsWith('"')) {
+                    ret.push(temp);
+                    temp = "";
+                    inQuote = false;
+                }
+            } else {
+                ret.push(f);
+            }
+        } else {
+            temp += " " + f;
+
+            if (f.endsWith("'") || f.endsWith('"')) {
+                ret.push(temp);
+                temp = "";
+                inQuote = false;
+            }
+        }
+    }
+
+    if (inQuote) {
+        AddText("\nWarning: Unmatched quote in input string.");
+    } else {
+        return ret[pos];
+    }
+    // im craving some chicken nuggets rn
+}
+
+AddText("\nLoaded\x1b[38;5;82m getarg \x1b[0m");
+
 AddText("\nLoaded\x1b[38;5;82m important functions \x1b[0m");
 
 AddText("\nStarting Load:\x1b[38;5;82m cmds \x1b[0m");
@@ -72,7 +115,7 @@ function comm(strg){
     let flags = getflags(strg);
     switch(opcode){
         case "echo":
-            AddText(opes.slice(1).join(' '));
+            AddText(getarg(strg, 1) + "\n");
             break;
         case "clear":
             currtext = "";
