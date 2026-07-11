@@ -50,3 +50,14 @@ td[data-tooltip]:hover::after {
 }
 /* The horizontal container */
 
+@keyframes cookiesExit {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(250px);
+	}
+}
