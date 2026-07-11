@@ -158,7 +158,7 @@ input.addEventListener("keydown", e => {
     // Prevent the browser from typing into the textarea
     e.preventDefault();
     if(e.key == "Enter"){
-        AddText("\n" + inp + "\n"); // Add the input to the output
+        AddText(inp + "\n"); // Add the input to the output
         comm(inp); // command shit
         inp = "";
     } else if (e.key == "Backspace") {
