@@ -122,11 +122,11 @@ function comm(strg){
             break;
         case "man":
             AddText(`
-                Welcome to MAN. This says everything about SAL.
-                Arguments are read normally:
-                "command op op "string op" --flag flag input -r "string flag input""
-                simple.
-                help prints the commands, man prints a guide on commands                
+Welcome to MAN. This says everything about SAL.
+Arguments are read normally:
+"command op op "string op" --flag flag input -r "string flag input""
+simple.
+help prints the commands, man prints a guide on commands                
                 `)
             break;
         case "help":
@@ -144,6 +144,7 @@ AddText("\nDone Load:\x1b[38;5;82m cmds \x1b[0m");
 
 AddText("\nStarting Load:\x1b[38;5;82m input \x1b[0m");
 
+AddText("\n") // important
 const input = document.getElementById("input");
 
 document.addEventListener("click", function(){
@@ -170,6 +171,6 @@ input.addEventListener("keydown", e => {
         }
     }
 
-    car.innerHTML = currtext + "\n" + inp;
+    car.innerHTML = currtext + inp;
     // Send the key to your terminal
 });
