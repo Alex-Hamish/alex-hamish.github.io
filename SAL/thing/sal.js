@@ -158,8 +158,9 @@ help prints the commands, man prints a guide on commands
             } else {
                 if (getarg(strg,1) == "="){
                     dict[getarg(strg, 0)] = getarg(strg, 2)
+                } else {
+                    AddText("Unknown command: " + opcode + "\n");
                 }
-                AddText("Unknown command: " + opcode + "\n");
             }
     }
 }
