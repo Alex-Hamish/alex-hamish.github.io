@@ -4,6 +4,10 @@ const car = document.getElementById("output");
 let inp = "";
 let currtext = "";
 
+let dict = {
+    OSType = "Yek", // Yek... hamnurber.
+    version: "1.0.2" // these two are hardcoded. You can only change them with special commands :P
+}; // 1.0.0 didn't even have input, and 1.0.1 had echo only.
 
 function AddText(strg){
     let f = ansi_up.ansi_to_html(strg); // Convert ANSI to HTML
@@ -67,19 +71,19 @@ function getarg(strg, pos){ // pos is the position (starting from 0), so if you 
     let ret = [];
 
     let temp = "";
-    let inQuote = false;
+    let ninQuote = false;
 
     for (const f of opes) {
-        if (!inQuote) {
+        if (ninQuote) {
             if (f.startsWith("'") || f.startsWith('"')) {
-                temp = f;
-                inQuote = true;
+                temp = f.slice(1);
+                ninQuote = true;
 
                 // handles: 'hello'
                 if (f.endsWith("'") || f.endsWith('"')) {
-                    ret.push(temp);
+                    ret.push(temp.slice(0,-2)); // removes the quote
                     temp = "";
-                    inQuote = false;
+                    ninQuote = false;
                 }
             } else {
                 ret.push(f);
@@ -88,14 +92,14 @@ function getarg(strg, pos){ // pos is the position (starting from 0), so if you 
             temp += " " + f;
 
             if (f.endsWith("'") || f.endsWith('"')) {
-                ret.push(temp);
+                ret.push(temp.slice(0,-2)); // removes the quote
                 temp = "";
-                inQuote = false;
+                ninQuote = false;
             }
         }
     }
 
-    if (inQuote) {
+    if (ninQuote) {
         AddText("\nWarning: Unmatched quote in input string.");
     } else {
         return ret[pos];
@@ -124,7 +128,7 @@ function comm(strg){
             AddText(`
 Welcome to MAN. This says everything about SAL.
 Arguments are read normally:
-"command op op "string op" --flag flag input -r "string flag input""
+"command op op "string op" --flag flag-input -r "string flag input""
 simple.
 help prints the commands, man prints a guide on commands                
                 `)
@@ -136,7 +140,24 @@ help prints the commands, man prints a guide on commands
             AddText("help: Displays this help message.\n");
             break;
         default:
-            AddText("Unknown command: " + opcode + "\n");
+            if(dict.includes(getarg(strg, 0))){
+                if(getarg(strg,1) == undefined){
+                    AddText(dict[getarg(strg, 0)] + "\n")
+                } else {
+                    switch(getarg(strg,1)){
+                        case "=":
+                            if (getarg(strg, 0) == "version" || getarg(strg, 0) == "OSType") {
+                                AddText("You cannot edit a readonly value. You have to change it via other methods.")
+                            } else {
+                                dict[getarg(strg, 0)] = getarg(strg, 1)
+                            }
+                            break;
+
+                    }
+                }
+            } else {
+                AddText("Unknown command: " + opcode + "\n");
+            }
     }
 }
 
