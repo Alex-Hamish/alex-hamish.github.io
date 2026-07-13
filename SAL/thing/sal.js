@@ -5,8 +5,8 @@ let inp = "";
 let currtext = "";
 
 let dict = {
-    OSType = "Yek", // Yek... hamnurber.
-    version = "1.0.2" // these two are hardcoded. You can only change them with special commands :P
+    OSType: "Yek", // Yek... hamnurber.
+    version: "1.0.2" // these two are hardcoded. You can only change them with special commands :P
 }; // 1.0.0 didn't even have input, and 1.0.1 had echo only.
 
 function AddText(strg){
