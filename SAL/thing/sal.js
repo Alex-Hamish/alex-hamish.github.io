@@ -149,13 +149,16 @@ help prints the commands, man prints a guide on commands
                             if (getarg(strg, 0) == "version" || getarg(strg, 0) == "OSType") {
                                 AddText("You cannot edit a readonly value. You have to change it via other methods.")
                             } else {
-                                dict[getarg(strg, 0)] = getarg(strg, 1)
+                                dict[getarg(strg, 0)] = getarg(strg, 2)
                             }
                             break;
 
                     }
                 }
             } else {
+                if (getarg(strg,1) == "="){
+                    dict[getarg(strg, 0)] = getarg(strg, 2)
+                }
                 AddText("Unknown command: " + opcode + "\n");
             }
     }
