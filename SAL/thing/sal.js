@@ -146,8 +146,8 @@ help prints the commands, man prints a guide on commands
                 } else {
                     switch(getarg(strg,1)){
                         case "=":
-                            if (getarg(strg, 0) == "version" || getarg(strg, 0) == "OSType") {
-                                AddText("You cannot edit a readonly value. You have to change it via other methods.")
+                            if (getarg(strg, 0) == "version" || getarg(strg, 0) == "OSType") { // hardcoded
+                                AddText("You cannot edit a readonly value. You have to change it via other methods.\n")
                             } else {
                                 dict[getarg(strg, 0)] = getarg(strg, 2)
                             }
@@ -159,7 +159,7 @@ help prints the commands, man prints a guide on commands
                 if (getarg(strg,1) == "="){
                     dict[getarg(strg, 0)] = getarg(strg, 2)
                 } else {
-                    AddText("Unknown command: " + opcode + "\n");
+                    AddText("Unknown command or variable:" + opcode + "\n");
                 }
             }
     }
