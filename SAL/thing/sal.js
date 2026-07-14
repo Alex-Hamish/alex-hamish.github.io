@@ -137,7 +137,14 @@ help prints the commands, man prints a guide on commands
             AddText("Available commands:\n");
             AddText("echo: Echoes the input back to the terminal.\n");
             AddText("clear: Clears the terminal.\n");
+            AddText("variables: Displays all variables.\n");
+            AddText("man: Displays the manual.\n");
             AddText("help: Displays this help message.\n");
+            break;
+        case "variables":
+            for (const [key, value] of Object.entries(user)) {
+              AddText(key + ": " + value + "\n");
+            }
             break;
         default:
             if(getarg(strg, 0) in dict){
@@ -159,7 +166,7 @@ help prints the commands, man prints a guide on commands
                 if (getarg(strg,1) == "="){
                     dict[getarg(strg, 0)] = getarg(strg, 2)
                 } else {
-                    AddText("Unknown command or variable:" + opcode + "\n");
+                    AddText("Unknown command or variable:" + " " + opcode + "\n");
                 }
             }
     }
