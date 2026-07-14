@@ -74,14 +74,14 @@ function getarg(strg, pos){ // pos is the position (starting from 0), so if you 
     let ninQuote = false;
 
     for (const f of opes) {
-        if (ninQuote) {
+        if (!ninQuote) {
             if (f.startsWith("'") || f.startsWith('"')) {
                 temp = f.slice(1);
                 ninQuote = true;
 
                 // handles: 'hello'
                 if (f.endsWith("'") || f.endsWith('"')) {
-                    ret.push(temp.slice(0,-2)); // removes the quote
+                    ret.push(temp.slice(0,-1)); // removes the quote
                     temp = "";
                     ninQuote = false;
                 }
@@ -92,7 +92,7 @@ function getarg(strg, pos){ // pos is the position (starting from 0), so if you 
             temp += " " + f;
 
             if (f.endsWith("'") || f.endsWith('"')) {
-                ret.push(temp.slice(0,-2)); // removes the quote
+                ret.push(temp.slice(0,-1)); // removes the quote
                 temp = "";
                 ninQuote = false;
             }
