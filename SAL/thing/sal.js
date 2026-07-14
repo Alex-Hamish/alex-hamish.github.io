@@ -125,13 +125,12 @@ function comm(strg){
             currtext = "";
             break;
         case "man":
-            AddText(`
-Welcome to MAN. This says everything about SAL.
+            AddText(`Welcome to MAN. This says everything about SAL.
 Arguments are read normally:
 "command op op "string op" --flag flag-input -r "string flag input""
 simple.
 help prints the commands, man prints a guide on commands                
-                `)
+`)
             break;
         case "help":
             AddText("Available commands:\n");
