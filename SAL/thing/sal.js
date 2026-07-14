@@ -142,7 +142,7 @@ help prints the commands, man prints a guide on commands
             AddText("help: Displays this help message.\n");
             break;
         case "variables":
-            for (const [key, value] of Object.entries(user)) {
+            for (const [key, value] of Object.entries(dict)) {
               AddText(key + ": " + value + "\n");
             }
             break;
