@@ -140,7 +140,7 @@ help prints the commands, man prints a guide on commands
             AddText("help: Displays this help message.\n");
             break;
         default:
-            if(dict.includes(getarg(strg, 0))){
+            if(getarg(strg, 0) in dict){
                 if(getarg(strg,1) == undefined){
                     AddText(dict[getarg(strg, 0)] + "\n")
                 } else {
