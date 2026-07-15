@@ -3,6 +3,7 @@ var ansi_up = new AnsiUp();
 const car = document.getElementById("output");
 let inp = "";
 let currtext = "";
+let files = {};
 
 let dict = {
     OSType: "Yek", // Yek... hamnurber.
@@ -14,7 +15,25 @@ function AddText(strg){
     currtext = currtext + f; // if car is "binglien", then adding "binglein" (as strg) would make "binglienbinglein"
 }
 
+function save(){
+    localStorage.setItem("dict", JSON.stringify(dict));
+    localStorage.setItem("files", JSON.stringify(files));
+}
+
+function load(){
+    let loaded = localStorage.getItem("dict");
+    let loadedFiles = localStorage.getItem("files");
+    if (loadedFiles) {
+        files = JSON.parse(loadedFiles);
+    }
+    if (loaded) {
+        dict = JSON.parse(loaded);
+    }
+}
+
 AddText("Starting Load...");
+
+load();
 
 AddText("\nStarting Load:\x1b[38;5;82m important functions \x1b[0m");
 function getflags(strg){
@@ -129,7 +148,11 @@ function comm(strg){
 Arguments are read normally:
 "command op op "string op" --flag flag-input -r "string flag input""
 simple.
-help prints the commands, man prints a guide on commands                
+help prints the commands, man prints a guide on commands
+you can also set variables by using "variable = value" and get them by using "variable"
+for example, "version" will return the version of SAL, and "version = 1.0.3" will set the version to 1.0.3, though this value is readonly and cannot be changed. 
+You can also use "variables" to see all variables.
+
 `)
             break;
         case "help":
@@ -137,6 +160,8 @@ help prints the commands, man prints a guide on commands
             AddText("echo: Echoes the input back to the terminal.\n");
             AddText("clear: Clears the terminal.\n");
             AddText("variables: Displays all variables.\n");
+            AddText("rmvar: Removes a variable. Usage: rmvar <variable_name>\n");
+            AddText("backup: Creates a backup of the current variables and files.\n");
             AddText("man: Displays the manual.\n");
             AddText("help: Displays this help message.\n");
             break;
@@ -144,6 +169,23 @@ help prints the commands, man prints a guide on commands
             for (const [key, value] of Object.entries(dict)) {
               AddText(key + ": " + value + "\n");
             }
+            break;
+        case "rmvar":
+            if (getarg(strg, 1) in dict){
+                delete dict[getarg(strg, 1)];
+            } else {
+                AddText("Variable not found: " + getarg(strg, 1) + "\n");
+            }
+            break;
+        case "backup":
+            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dict));
+            let downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "backup.json");
+            document.body.appendChild(downloadAnchorNode); // required for firefox
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+            // thank you ProstoNekitos/burning_dumpster for this code.
             break;
         default:
             if(getarg(strg, 0) in dict){
@@ -205,3 +247,8 @@ input.addEventListener("keydown", e => {
     car.innerHTML = currtext + inp;
     // Send the key to your terminal
 });
+
+AddText("\n\x1b[38;5;196mWARNING: This is a very early version of SAL. It is not stable and may have bugs. Please report any issues to the developer.\x1b[0m");
+AddText("\n\x1b[38;5;196mWARNING: Your browser may delete your files and folders. Please backup your data by using <em>backup</em> before using this terminal.\x1b[0m");
+
+window.addEventListener("beforeunload", save);
