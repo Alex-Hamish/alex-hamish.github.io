@@ -342,8 +342,11 @@ You can also use "variables" to see all variables.
                     }
                 });
 
+            } else {
+                AddText("Unknown debug command: " + getarg(strg, 1) + "\n");
             }
 
+            break;
 
         case "backup":
             let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dict));
