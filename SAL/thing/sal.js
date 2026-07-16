@@ -4,7 +4,38 @@ const car = document.getElementById("output");
 let inp = "";
 let currtext = "";
 let commhist = [];
+let currcom = 0;
 let files = {};
+
+let yn = false;
+let ynresolve = false;
+
+let ynresolveWait = null;
+
+function waitUntilFalse() {
+    if (!ynwaiting) return Promise.resolve();
+
+    return new Promise(resolve => {
+        ynresolveWait = resolve;
+    });
+}
+
+let ynwaiting = true;
+
+function setWaiting(value) {
+    ynwaiting = value;
+
+    if (!ynwaiting && ynresolveWait) {
+        ynresolveWait();
+        ynresolveWait = null;
+    }
+}
+
+
+
+
+
+
 let examplefile = {
     "name": "example.exa", // the file ext exa is a custom file extension. it can be up to 4 chars.
     "magicword": "!exa-1!", // because this is a file, it has a magicword. this is used to identify the file in the files object. it can be anything, but it should be unique.
@@ -61,18 +92,6 @@ function load(){
         dict = JSON.parse(loaded);
     }
 }
-
-async function waitForKey() {
-    return new Promise(resolve => {
-        function onKey(e) {
-            document.removeEventListener("keydown", onKey);
-            resolve(e.key); // Returns the key that was pressed
-        }
-
-        document.addEventListener("keydown", onKey);
-    });
-}
-
 
 AddText("Starting Load...");
 
@@ -172,16 +191,10 @@ function getarg(strg, pos){ // pos is the position (starting from 0), so if you 
 AddText("\nLoaded\x1b[38;5;82m getarg \x1b[0m");
 
 async function yesno(){
-    // this is a thingy that gets y/n prompts
-    let result = false;
-    const key = await waitForKey();
-    if (key == "y" || key == "Y"){
-        result = true;
-        } else {
-            result = false;
-        }
-    inp = ""; // so you don't accidentally have a y/n prompt in your input :3
-    return result;  
+    // WE USE AN NO ASYNC FUNCITON WE USE input.addEventListener("keydown", e => {
+    let ynresolve = true;
+    await waitUntilFalse();
+    return ynresolve;
 }
 
 AddText("\nLoaded\x1b[38;5;82m important functions \x1b[0m");
@@ -401,9 +414,29 @@ document.addEventListener("click", function(){
     car.innerHTML = currtext + "\n" + inp;
 });
 
-input.addEventListener("keydown", e => {
-    console.log(e.key);
+input.addEventListener("keydown", async (e) => {
 
+    if (ynwaiting) {
+        if (e.key == "y" || e.key == "Y") {
+            ynresolve = true;
+            setWaiting(false);
+        } else if (e.key == "n" || e.key == "N") {
+            ynresolve = false;
+            setWaiting(false);
+        }
+    }
+
+    if (e.key == "Tab") {
+        e.preventDefault();
+        let possibleCommands = ["echo", "clear", "man", "help", "variables", "rmvar", "save", "load", "loadbackup", "cat", "ls", "unzip", "zip", "backup"];
+        let currentInput = inp.trim();
+        let matchingCommands = possibleCommands.filter(cmd => cmd.startsWith(currentInput));
+        if (matchingCommands.length === 1) {
+            inp = matchingCommands[0] + " ";
+        } else if (matchingCommands.length > 1) {
+            AddText("\n" + matchingCommands.join(" ") + "\n");
+        }
+    }
     // Prevent the browser from typing into the textarea
     e.preventDefault();
     if(e.key == "Enter"){
@@ -424,6 +457,17 @@ input.addEventListener("keydown", e => {
         }
     }
 
+    if (e.key == "ArrowUp") {
+        if (commhist.length > 0) {
+            currcom = Math.max(0, currcom - 1);
+            inp = commhist[currcom];
+        }
+    } else if (e.key == "ArrowDown") {
+        if (commhist.length > 0) {
+            currcom = Math.min(commhist.length - 1, currcom + 1);
+            inp = commhist[currcom];
+        }
+    }   
     
 
     car.innerHTML = currtext + inp;
