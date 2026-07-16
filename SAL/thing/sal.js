@@ -335,16 +335,14 @@ You can also use "variables" to see all variables.
         case "debug":
             if (getarg(strg, 1) == "#0[[FILE]]") {
                 AddText("Are you sure? This will add the example files. (y/n)\n");
-                yesno().then(yn => {
-                    if (yn) {
-                        files[examplefile.magicword] = examplefile;
-                        files[examplefile2.magicword] = examplefile2;
-                        AddText("Example files added.\n");
-                    } else {
-                        AddText("Operation cancelled.\n");
-                    }
-                });
-
+                let a = yesno();
+                if (a) {
+                    files[examplefile.magicword] = examplefile;
+                    files[examplefile2.magicword] = examplefile2;
+                    AddText("Example files added.\n");
+                } else {
+                    AddText("Operation cancelled.\n");  
+                }
             } else {
                 AddText("Unknown debug command: " + getarg(strg, 1) + "\n");
             }
