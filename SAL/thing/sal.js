@@ -424,6 +424,7 @@ input.addEventListener("keydown", async (e) => {
             ynresolve = false;
             setWaiting(false);
         }
+        inp = ""; // reset
     }
 
     if (e.key == "Tab") {
@@ -482,3 +483,14 @@ AddText("\n"); // because of the warnings, we need a new line before the input
 
 
 window.addEventListener("beforeunload", save);
+
+
+
+// oh wee oo i look just like buddy holly
+// oh oh and your mary tyler moore
+// and i don't care what they say about us anyway
+// i don't care about that 
+// i don't care about that
+// i don't care about that
+// and then something else
+// i froggt
