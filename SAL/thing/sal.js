@@ -171,21 +171,23 @@ function getarg(strg, pos){ // pos is the position (starting from 0), so if you 
 
 AddText("\nLoaded\x1b[38;5;82m getarg \x1b[0m");
 
-function yesno(){
+async function yesno(){
     // this is a thingy that gets y/n prompts
-    let a = waitForKey();
-    if (a == "y" || a == "Y"){
-        return true;
-    } else {
-        return false;
-    }
+    let result = false;
+    const key = await waitForKey();
+    if (key == "y" || key == "Y"){
+        result = true;
+        } else {
+            result = false;
+        }
+    return result;  
 }
 
 AddText("\nLoaded\x1b[38;5;82m important functions \x1b[0m");
 
 AddText("\nStarting Load:\x1b[38;5;82m cmds \x1b[0m");
 
-function comm(strg){
+async function comm(strg){
     let opes = strg.split(' ');
     let opcode = opes[0];
     let flags = getflags(strg);
@@ -336,7 +338,8 @@ You can also use "variables" to see all variables.
         case "debug":
             if (getarg(strg, 1) == "#0[[FILE]]") {
                 AddText("Are you sure? This will add the example files. (y/n)\n");
-                if (yesno()) {
+                let a = yesno();
+                if (a) {
                     files[examplefile.magicword] = examplefile;
                     files[examplefile2.magicword] = examplefile2;
                     AddText("Example files added.\n");
