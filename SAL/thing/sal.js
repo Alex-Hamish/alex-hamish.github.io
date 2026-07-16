@@ -172,9 +172,12 @@ AddText("\nLoaded\x1b[38;5;82m getarg \x1b[0m");
 
 function yesno(){
     // this is a thingy that gets y/n prompts
-    return waitForKey().then(key => {
-        return key === "y" || key === "Y";
-    });
+    let a = waitForKey();
+    if (a == "y" || a == "Y"){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 AddText("\nLoaded\x1b[38;5;82m important functions \x1b[0m");
