@@ -66,7 +66,7 @@ let examplefile2 = {
 
 let dict = {
     OSType: "Yek", // Yek... hamnurber.
-    version: "1.0.2" // these two are hardcoded. You can only change them with special commands :P
+    version: "1.0.3" // these two are hardcoded. You can only change them with special commands :P
 }; // 1.0.0 didn't even have input, and 1.0.1 had echo only.
 
 function AddText(strg){
@@ -351,19 +351,30 @@ You can also use "variables" to see all variables.
             }
             break;
         case "debug":
-            if (getarg(strg, 1) == "#0[[FILE]]") {
-                AddText("Are you sure? This will add the example files. (y/n)\n");
-                const a = await yesno();
-                if (a) {
-                    files[examplefile.magicword] = examplefile;
-                    files[examplefile2.magicword] = examplefile2;
-                    AddText("Example files added.\n");
-                } else {
-                    AddText("Aborted adding example files.\n");
-                }
-            } else {
-                AddText("Unknown debug command: " + getarg(strg, 1) + "\n");
-            }
+            switch(getarg(strg, 1)){
+                case "(*EXAMPLE*)":
+                    AddText("Are you sure? This will add the example files. (y/n)\n");
+                    const a = await yesno();
+                    if (a) {
+                        files[examplefile.magicword] = examplefile;
+                        files[examplefile2.magicword] = examplefile2;
+                        AddText("Example files added.\n");
+                    } else {
+                        AddText("Aborted adding example files.\n");
+                    }
+                    break;
+                case "help":
+                    AddText("Debug commands:\n");
+                    AddText("debug (*EXAMPLE*): Adds example files to the file system.\n");
+                    AddText("debug version: Displays the version.\n");
+                    AddText("debug help: Displays this help message.\n");
+                    break;
+                case "version":
+                    AddText("Debug version: 1.0.0\n");
+                    break;
+                default:
+                    AddText("Unknown debug command: " + getarg(strg, 1) + "\n");
+            }   
 
             break;
 
