@@ -194,6 +194,7 @@ async function yesno(){
     // WE USE AN NO ASYNC FUNCITON WE USE input.addEventListener("keydown", e => {
     let ynresolve = true;
     await waitUntilFalse();
+    inp = ""; // reset
     return ynresolve;
 }
 
@@ -423,8 +424,9 @@ input.addEventListener("keydown", async (e) => {
         } else if (e.key == "n" || e.key == "N") {
             ynresolve = false;
             setWaiting(false);
+            
         }
-        inp = ""; // reset
+        
     }
 
     if (e.key == "Tab") {
