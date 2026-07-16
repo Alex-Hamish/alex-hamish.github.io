@@ -317,7 +317,7 @@ You can also use "variables" to see all variables.
                 if (file.name === fileToUnzip) {
                     if (file.magicword === "!zip!") {
                         files[file.magicword] = "!f!"; // change magicword to folder
-                        files[file.name] = file.slice(0, -4); // remove .zip from name
+                        files[file.name] = file[name].slice(0, -4); // remove .zip from name
                         AddText("Unzipped " + fileToUnzip + " into a folder.\n");
                     } else {
                         AddText("File is not a zip file: " + fileToUnzip + "\n");
