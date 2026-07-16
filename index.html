@@ -33,13 +33,13 @@
     <a href="/TIS/">TIS shii</a>
     <a href="/SAL/">custom thingy shii</a>
     <br>
-    <div style="background-color: darkslategray;" id="cookieBanner">
+    <div class="cookieBanner">
         <h4>I use cookies for dev projects</h4>
         <span><button id="aight">Aight</button><button id="unfortunate">Aw man :(</button></span>
         <p id="ahwell"></p>
     </div>
     <script>
-        const banner = document.getElementById("cookieBanner");
+        const banner = document.querySelector(".cookieBanner")[0];
         const aight = document.getElementById("aight");
         const unfortunate = document.getElementById("unfortunate");
         const ahwell = document.getElementById("ahwell")
