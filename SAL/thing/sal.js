@@ -62,7 +62,7 @@ function load(){
     }
 }
 
-function waitForKey() {
+async function waitForKey() {
     return new Promise(resolve => {
         function onKey(e) {
             document.removeEventListener("keydown", onKey);
@@ -180,6 +180,7 @@ async function yesno(){
         } else {
             result = false;
         }
+    inp = ""; // so you don't accidentally have a y/n prompt in your input :3
     return result;  
 }
 
