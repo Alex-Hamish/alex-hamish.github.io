@@ -49,23 +49,6 @@ td[data-tooltip]:hover::after {
   visibility: visible;
 }
 
-#cookieBanner {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: darkslategray;
-  color: #fff;
-  padding: 15px 30px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: fit-content;
-  max-width: 90%;
-}
-
 @keyframes cookiesExit {
 	0% {
 		opacity: 1;

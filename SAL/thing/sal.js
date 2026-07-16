@@ -3,6 +3,7 @@ var ansi_up = new AnsiUp();
 const car = document.getElementById("output");
 let inp = "";
 let currtext = "";
+let commhist = [];
 let files = {};
 let examplefile = {
     "name": "example.exa", // the file ext exa is a custom file extension. it can be up to 4 chars.
@@ -335,13 +336,12 @@ You can also use "variables" to see all variables.
         case "debug":
             if (getarg(strg, 1) == "#0[[FILE]]") {
                 AddText("Are you sure? This will add the example files. (y/n)\n");
-                let a = yesno();
-                if (a) {
+                if (yesno()) {
                     files[examplefile.magicword] = examplefile;
                     files[examplefile2.magicword] = examplefile2;
                     AddText("Example files added.\n");
                 } else {
-                    AddText("Operation cancelled.\n");  
+                    AddText("Aborted adding example files.\n");
                 }
             } else {
                 AddText("Unknown debug command: " + getarg(strg, 1) + "\n");
@@ -404,8 +404,12 @@ input.addEventListener("keydown", e => {
     e.preventDefault();
     if(e.key == "Enter"){
         AddText(inp + "\n"); // Add the input to the output
+        commhist.push(inp); // command history shit
         comm(inp); // command shit
-        inp = "";
+        inp = ""; // reset the input shit
+        // shit shit
+        // shit
+        // yeah
     } else if (e.key == "Backspace") {
         inp = inp.slice(0, -1);
     } else if (e.key.length === 1) {
@@ -415,6 +419,8 @@ input.addEventListener("keydown", e => {
             inp = inp + e.key;
         }
     }
+
+    
 
     car.innerHTML = currtext + inp;
     // Send the key to your terminal
