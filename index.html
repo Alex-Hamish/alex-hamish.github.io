@@ -33,7 +33,7 @@
     <a href="/TIS/">TIS shii</a>
     <a href="/SAL/">custom thingy shii</a>
     <br>
-    <div id="cookieBanner" style="  position: fixed;
+    <div id="cookieBanner" style="position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
@@ -60,7 +60,21 @@
         const ahwell = document.getElementById("ahwell")
         let a = 0;
         function clearBanner(){
-            banner.style = "animation: cookiesExit 2s ease 0s 1 normal forwards;";
+            banner.style = `position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: darkslategray;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  max-width: 90%;
+  animation: cookiesExit 2s ease 0s 1 normal forwards;`;
         }
         aight.addEventListener("click", function(){
             clearBanner();
