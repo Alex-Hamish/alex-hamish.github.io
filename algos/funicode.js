@@ -38,8 +38,8 @@ function makefunicode(text){
     // Put the pixels onto the canvas
     ctx.putImageData(img, 0, 0);
 
-
-    canvas.style("ctx.imageSmoothingEnabled = false; width: 128px; height: 128px"); // renders the canvas
+    ctx.imageSmoothingEnabled = false;
+    canvas.style = "width: 128px; height: 128px"); // renders the canvas
     // Display it
     document.getElementById("image").appendChild(canvas);
 }
