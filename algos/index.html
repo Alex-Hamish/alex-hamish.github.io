@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Aex's Den</title>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Soy CPU</title>
 </head>
 <body>
-    <h1>Hola
+    <h1>Soy Cpu: An 8-bit crappy one.
             <div id="distrubhim">
             <svg width="70px" height="70px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5; float: right;">
             <g transform="matrix(1.854333,0,0,1.854333,-52.629054,-308.808111)">
@@ -26,65 +26,10 @@
             </svg>
             </div>
     </h1>
-    <p>This is my den please do not disturb me.</p>
-    <br>
-    <a href="/soycpu/">soycpu shii</a>
-    <a href="/blog/">blog shii</a>
-    <a href="/TIS/">TIS shii</a>
-    <a href="/SAL/">custom thingy shii</a>
-    <a href="/algos/">algorithms</a>
-    <br>
-    <div id="cookieBanner" style="position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: darkslategray;
-  color: #fff;
-  padding: 15px 30px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: fit-content;
-  max-width: 90%;">
-  <!-- The content of the banner -->
-        <h4 style="margin: 0;">I use cookies for dev projects</h4>
-        <span><button id="aight">Aight</button><button id="unfortunate">Aw man :(</button></span>
-        <br>
-        <p style="color: #a00;" id="ahwell"></p>
-    </div>
-    <script>
-        const banner = document.getElementById("cookieBanner");
-        const aight = document.getElementById("aight");
-        const unfortunate = document.getElementById("unfortunate");
-        const ahwell = document.getElementById("ahwell")
-        let a = 0;
-        function clearBanner(){
-            banner.style = `position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: darkslategray;
-  color: #fff;
-  padding: 15px 30px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: fit-content;
-  max-width: 90%;
-  animation: cookiesExit 2s ease 0s 1 normal forwards;`;
-        }
-        aight.addEventListener("click", function(){
-            clearBanner();
-        });
-        unfortunate.addEventListener("click", function(){
-            ahwell.innerHTML = "aight well. click again. you will see me again cause i need cookies to disappear.";
-            if (a == 1){clearBanner();}
-            a = 1;
-        });
-    </script>
+    <p>Various algorithms.</p>
+    <p>funicode: qr codes but worse</p>
+    <p>text input:</p>
+    <span><input id="funitext"></input><button if="funiti">submit</button></span>
+    <div id="image"></div>
 </body>
 </html>
