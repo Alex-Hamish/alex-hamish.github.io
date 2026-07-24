@@ -1,7 +1,7 @@
 // funicode is a qr-like code.
 // it is in 32x32 format normally
 const textinput = document.getElementById("funitext");
-const sumbit = document.getElementById("funiti");
+const sumbit = document.getElementById("sumbit");
 
 sumbit.addEventListener("click", function(){
     console.log("funicode in the making");
