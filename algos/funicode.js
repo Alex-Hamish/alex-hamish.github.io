@@ -3,6 +3,7 @@
 const textinput = document.getElementById("funitext");
 const sumbit = document.getElementById("sumbit");
 
+
 sumbit.addEventListener("click", function(){
     console.log("funicode in the making");
     makefunicode(textinput.innerHTML);
