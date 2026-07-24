@@ -8,4 +8,4 @@ Funicode is a qr clone made because QR codes are overused and I want people to s
 Funicode is a two-dimensional matrix symbology designed for people who are blinded by QR codes while at night. 
 They are easy to idenitfy by their identifier:.
 
-<img alt="A funicode identifier." src="./start.png" width=256 height=256/>
+<img alt="A funicode identifier." src="./start.png" height=256/>
