@@ -16,6 +16,7 @@ sumbit.addEventListener("click", function(){
         currversion = choice.value;
     }
     makefunicode(textinput.innerHTML);
+    console.log("funicode has been made")
 
 
 });
@@ -93,5 +94,5 @@ function makefunicode(text){
     ctx.imageSmoothingEnabled = false;
     canvas.style = "width: 128px; height: 128px"; // renders the canvas
     // Display it
-    document.getElementById("image").appendChild(canvas);
+    document.body.appendChild(canvas);
 }
