@@ -9,3 +9,10 @@ Funicode is a two-dimensional matrix symbology designed for people who are blind
 They are easy to idenitfy by their identifier:.
 
 <img alt="A funicode identifier." src="./start.png" height=256/>
+
+### Versions
+#### v1.0.0
+The first version of funicode.
+It adds basic B&W code.
+#### vc1.0.0
+This is a coloured version of V1.0.0
