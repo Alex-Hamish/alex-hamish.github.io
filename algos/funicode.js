@@ -26,7 +26,6 @@ function makefunicode(text){
     canvas.width = 32;
     canvas.height = 32;
 
-    const ctx = canvas.getContext("2d");
 
     // Create a blank 32x32 image
     const img = ctx.createImageData(32, 32);
