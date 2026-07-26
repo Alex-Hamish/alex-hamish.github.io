@@ -3,8 +3,6 @@
 const textinput = document.getElementById("funitext");
 const sumbit = document.getElementById("sumbit");
 const choice = document.getElementById("v-select");
-const myImage = new Image()
-myImage.src = "./start.png";
 let currversion = "";
 
 sumbit.addEventListener("click", function(){
@@ -23,6 +21,7 @@ sumbit.addEventListener("click", function(){
 
 function makefunicode(text){
     const canvas = document.getElementById("canvas")
+    ctx.imageSmoothingEnabled = false;
     canvas.width = 32;
     canvas.height = 32;
 
@@ -86,12 +85,11 @@ function makefunicode(text){
                 break;
         }
     }
-
-    ctx.drawImage(myImage, 0, 0);
-    // Put the pixels onto the canvas
-    ctx.putImageData(img, 0, 0);
-
-    ctx.imageSmoothingEnabled = false;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(1, 1, 6, 6);
+    ctx.strokeRect(3, 3, 4, 4);
+    
+    console.log("added thingy")
     // Display it
     document.body.appendChild(canvas);
 }
