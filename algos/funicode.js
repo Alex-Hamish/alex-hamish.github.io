@@ -22,7 +22,7 @@ sumbit.addEventListener("click", function(){
 });
 
 function makefunicode(text){
-    const canvas = document.createElement("canvas");
+    const canvas = document.getElementById("canvas")
     canvas.width = 32;
     canvas.height = 32;
 
@@ -92,7 +92,6 @@ function makefunicode(text){
     ctx.putImageData(img, 0, 0);
 
     ctx.imageSmoothingEnabled = false;
-    canvas.style = "width: 128px; height: 128px"; // renders the canvas
     // Display it
     document.body.appendChild(canvas);
 }
