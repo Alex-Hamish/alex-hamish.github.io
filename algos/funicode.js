@@ -21,6 +21,7 @@ sumbit.addEventListener("click", function(){
 
 function makefunicode(text){
     const canvas = document.getElementById("canvas")
+    const ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = false;
     canvas.width = 32;
     canvas.height = 32;
@@ -88,7 +89,7 @@ function makefunicode(text){
     ctx.lineWidth = 1;
     ctx.strokeRect(1, 1, 6, 6);
     ctx.strokeRect(3, 3, 4, 4);
-    
+
     console.log("added thingy")
     // Display it
     document.body.appendChild(canvas);
