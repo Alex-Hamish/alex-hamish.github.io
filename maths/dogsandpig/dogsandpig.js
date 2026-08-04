@@ -90,12 +90,34 @@ function getMoves(pos) {
 function drawBoard() {
     const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
-    ctx.lineWidth = 0;
+
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-
+    // lines
+    ctx.lineWidth = 10;
+    ctx.beginPath();
+    ctx.moveTo(300, 50);
+    ctx.lineTo(300, 550);
+    ctx.moveTo(150, 200);
+    ctx.lineTo(450, 200);
+    ctx.moveTo(150, 300);
+    ctx.lineTo(450, 300);
+    ctx.moveTo(150, 400);
+    ctx.lineTo(450, 400);
+    ctx.moveTo(150, 200);
+    ctx.lineTo(150, 400);
+    ctx.moveTo(450, 200);
+    ctx.lineTo(450, 400);
+    ctx.moveTo(150, 200);
+    ctx.lineTo(450, 400);
+    ctx.moveTo(150, 400);
+    ctx.lineTo(450, 200);
+    ctx.closePath();
+    ctx.stroke();
+    // counters
+    ctx.lineWidth = 0;
     const positions = [
         { x: 300, y: 50 },
         { x: 150, y: 200 },
@@ -124,12 +146,6 @@ function drawBoard() {
         ctx.fill();
         
     }
-    ctx.lineWidth = 10;
-    ctx.beginPath();
-    ctx.moveTo(300, 50);
-    ctx.lineTo(300, 550);
-    ctx.closePath();
-    ctx.stroke();
 }
 
 
