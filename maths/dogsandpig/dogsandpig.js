@@ -90,7 +90,8 @@ function getMoves(pos) {
 function drawBoard() {
     const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    ctx.fillRect(20, 20, 200, 100);
 
     const positions = [
         { x: 300, y: 50 },
@@ -108,9 +109,6 @@ function drawBoard() {
 
     for (let i = 0; i < board.length; i++) {
         const pos = positions[i];
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 20, 0, 2 * Math.PI);
-
         if (board[i] === 1) {
             ctx.fillStyle = "pink"; // Pig
         } else if (board[i] === -1) {
@@ -118,6 +116,9 @@ function drawBoard() {
         } else {
             ctx.fillStyle = "black"; // Empty
         }
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 20, 0, 2 * Math.PI);
+
     }
 }
 
