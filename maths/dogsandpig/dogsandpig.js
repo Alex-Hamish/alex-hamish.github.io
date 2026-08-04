@@ -90,8 +90,9 @@ function getMoves(pos) {
 function drawBoard() {
     const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, 600, 100);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const positions = [
         { x: 300, y: 50 },
