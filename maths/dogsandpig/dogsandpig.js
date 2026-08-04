@@ -123,6 +123,10 @@ function drawBoard() {
     }
 }
 
+
+drawBoard();
+
+
 document.getElementById("start").addEventListener("click", function() {
     board = [
         0,
