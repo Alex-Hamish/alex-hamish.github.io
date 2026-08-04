@@ -91,7 +91,7 @@ function drawBoard() {
     const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "white";
-    ctx.fillRect(20, 20, 200, 100);
+    ctx.fillRect(0, 0, 600, 100);
 
     const positions = [
         { x: 300, y: 50 },
@@ -118,6 +118,7 @@ function drawBoard() {
         }
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, 20, 0, 2 * Math.PI);
+        ctx.fill();
 
     }
 }
