@@ -114,10 +114,12 @@ function drawBoard() {
     ctx.lineTo(450, 400);
     ctx.moveTo(150, 400);
     ctx.lineTo(450, 200);
-    ctx.moveTo(300, 50);
-    ctx.lineTo(1, 1);
-    ctx.moveTo(6, 6);
-    ctx.lineTo(450, 200);
+    ctx.moveTo(450, 200);
+    ctx.lineTo(300, 50);
+    ctx.lineTo(150, 200);
+    ctx.moveTo(450, 400);
+    ctx.lineTo(300, 550);
+    ctx.lineTo(150, 400);
     ctx.closePath();
     ctx.stroke();
     // counters
