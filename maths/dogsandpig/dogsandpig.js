@@ -4,9 +4,26 @@ let board = [
   0, 1, 0,
  -1, 0, -1,
     -1
-] // 1 is pig, -1 is dog, 0 is empty
+]; // 1 is pig, -1 is dog, 0 is empty
 
-
+let pos = [5,7,9,10];
+let turn = 1;
+function getPiececlick(x,y){
+        const positions = [
+        { x: 300, y: 50 },
+        { x: 150, y: 200 },
+        { x: 300, y: 200 },
+        { x: 450, y: 200 },
+        { x: 150, y: 300 },
+        { x: 300, y: 300 },
+        { x: 450, y: 300 },
+        { x: 150, y: 400 },
+        { x: 300, y: 400 },
+        { x: 450, y: 400 },
+        { x: 300, y: 550 }
+    ];
+    
+}
 function getMoves(pos) {
     let moves = [];
     if (board[pos] == 0) {
@@ -87,7 +104,7 @@ function getMoves(pos) {
     return moves;
 } // hardcoded ts :(
 
-function drawBoard() {
+function drawBoard(ismoving, pos) {
     const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
 
@@ -165,6 +182,12 @@ document.getElementById("start").addEventListener("click", function() {
      0, 1, 0,
     -1, 0, -1,
         -1
-    ]
-    drawBoard();
+    ];
+    drawBoard(false, 0);
+});
+
+document.getElementById("game-canvas").addEventListener("click", function(){
+    if (turn = 1){
+        drawBoard(false,pos[0]);
+    }
 });
