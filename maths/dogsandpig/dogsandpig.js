@@ -8,6 +8,7 @@ let board = [
 
 let pos = [5,7,9,10];
 let turn = 1;
+let moving = false;
 function getPiececlick(x,y){
         const positions = [
         { x: 300, y: 50 },
@@ -22,7 +23,17 @@ function getPiececlick(x,y){
         { x: 450, y: 400 },
         { x: 300, y: 550 }
     ];
-    
+    i = 0
+    for (pos in positions){
+        let dist = Math.sqrt((x-pos.x)^2+(y-pos.y)^2);
+        if (dist > 20){
+            // oop
+            let hi = "hi";
+        } else {
+            return i;
+        }
+        i += 1;
+    }
 }
 function getMoves(pos) {
     let moves = [];
@@ -104,41 +115,43 @@ function getMoves(pos) {
     return moves;
 } // hardcoded ts :(
 
-function drawBoard(ismoving, pos) {
+function drawBoard(ismoving, pois) {
     const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
 
-    
+    let moves = getMoves(pois)
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // lines
-    ctx.lineWidth = 10;
-    ctx.beginPath();
-    ctx.moveTo(300, 50);
-    ctx.lineTo(300, 550);
-    ctx.moveTo(150, 200);
-    ctx.lineTo(450, 200);
-    ctx.moveTo(150, 300);
-    ctx.lineTo(450, 300);
-    ctx.moveTo(150, 400);
-    ctx.lineTo(450, 400);
-    ctx.moveTo(150, 200);
-    ctx.lineTo(150, 400);
-    ctx.moveTo(450, 200);
-    ctx.lineTo(450, 400);
-    ctx.moveTo(150, 200);
-    ctx.lineTo(450, 400);
-    ctx.moveTo(150, 400);
-    ctx.lineTo(450, 200);
-    ctx.moveTo(450, 200);
-    ctx.lineTo(300, 50);
-    ctx.lineTo(150, 200);
-    ctx.moveTo(450, 400);
-    ctx.lineTo(300, 550);
-    ctx.lineTo(150, 400);
-    ctx.closePath();
-    ctx.stroke();
+    if (0 == 0){
+        ctx.lineWidth = 10;
+        ctx.beginPath();
+        ctx.moveTo(300, 50);
+        ctx.lineTo(300, 550);
+        ctx.moveTo(150, 200);
+        ctx.lineTo(450, 200);
+        ctx.moveTo(150, 300);
+        ctx.lineTo(450, 300);
+        ctx.moveTo(150, 400);
+        ctx.lineTo(450, 400);
+        ctx.moveTo(150, 200);
+        ctx.lineTo(150, 400);
+        ctx.moveTo(450, 200);
+        ctx.lineTo(450, 400);
+        ctx.moveTo(150, 200);
+        ctx.lineTo(450, 400);
+        ctx.moveTo(150, 400);
+        ctx.lineTo(450, 200);
+        ctx.moveTo(450, 200);
+        ctx.lineTo(300, 50);
+        ctx.lineTo(150, 200);
+        ctx.moveTo(450, 400);
+        ctx.lineTo(300, 550);
+        ctx.lineTo(150, 400);
+        ctx.closePath();
+        ctx.stroke();
+    }
     // counters
     ctx.lineWidth = 0;
     const positions = [
@@ -162,7 +175,13 @@ function drawBoard(ismoving, pos) {
         } else if (board[i] === -1) {
             ctx.fillStyle = "brown"; // Dog
         } else {
+            if (moves.includes(board[i])) {
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 10, 0, 2 * Math.PI);
+                ctx.fill();
+            }
             ctx.fillStyle = "black"; // Empty
+
         }
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, 20, 0, 2 * Math.PI);
@@ -187,7 +206,24 @@ document.getElementById("start").addEventListener("click", function() {
 });
 
 document.getElementById("game-canvas").addEventListener("click", function(){
+    const rect = canvas.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
     if (turn = 1){
-        drawBoard(false,pos[0]);
+        let ind = getPiececlick(x,y);
+        if (moving){
+            let moves = getMoves(pos[0]);
+            if (moves.includes(ind)){
+                board[pos[0]] = 0;
+                board[ind] = 1;
+                moving = false;
+            }
+        }else{
+            if (board[ind] == 1){
+                moving = true;
+                drawBoard(moving,pos[0]);
+            }
+        }
     }
 });
