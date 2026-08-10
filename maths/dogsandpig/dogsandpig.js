@@ -253,5 +253,5 @@ document.getElementById("game-canvas").addEventListener("click", function(){
             }
         }
     }
-    drawboard();
+    drawBoard();
 });
