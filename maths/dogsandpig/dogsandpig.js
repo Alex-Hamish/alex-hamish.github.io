@@ -11,6 +11,7 @@ let board = [
 let pos = [5,7,9,10];
 let turn = 1;
 let moving = false;
+let selectedPiece = -1;
 function getPiececlick(x,y){
         const positions = [
         { x: 300, y: 50 },
@@ -174,13 +175,21 @@ function drawBoard(ismoving = false, pois = 0) {
         } else if (board[i] === -1) {
             ctx.fillStyle = "brown"; // Dog
         } else {
-            if (moves.includes(board[i])) {
+            if (moves.includes(i)) {
                 ctx.beginPath();
                 ctx.arc(pos.x, pos.y, 10, 0, 2 * Math.PI);
                 ctx.fill();
             }
             ctx.fillStyle = "black"; // Empty
 
+        }
+        if (selectedPiece === i) {
+            ctx.strokeStyle = "yellow";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, 24, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.lineWidth = 1;
         }
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, 20, 0, 2 * Math.PI);
@@ -206,51 +215,58 @@ document.getElementById("start").addEventListener("click", function() {
     -1, 0, -1,
         -1
     ];
+
+    pos = [5,7,9,10];
+    turn = 1;
+    moving = false;
     drawBoard(false, 0);
 });
 
-document.getElementById("game-canvas").addEventListener("click", function(){
+document.getElementById("game-canvas").addEventListener("click", function(event){
     const rect = canvas.getBoundingClientRect();
-
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    if (turn == 1){
-        let ind = getPiececlick(x,y);
-        if (moving){
-            let moves = getMoves(pos[0]);
-            if (moves.includes(ind) && board[ind] == 0){
-                board[pos[0]] = 0;
-                pos[0] = ind;
+    const ind = getPiececlick(x,y);
+
+    if (ind < 0) {
+        // clicked outside a valid spot
+        return;
+    }
+
+    if (turn == 1) {
+        if (moving) {
+            const moves = getMoves(selectedPiece);
+            if (moves.includes(ind) && board[ind] == 0) {
+                board[selectedPiece] = 0;
                 board[ind] = 1;
-                turn = -1;
+                selectedPiece = -1;
                 moving = false;
+                turn = -1;
                 drawBoard();
             }
-        }else{
-            if (board[ind] == 1){
+        } else {
+            if (board[ind] == 1) {
+                selectedPiece = ind;
                 moving = true;
-                drawBoard(moving,pos[0]);
+                drawBoard(moving, selectedPiece);
             }
         }
-    } else if (turn == -1){
-
-        let ind = getPiececlick(x,y);
-        let movpiece = pos.indexOf(ind);
-
-        if (moving){
-            let moves = getMoves(pos[movpiece]);
-            if (moves.includes(ind) && board[ind] == 0){
-                board[pos[movpiece]] = 0;
-                pos[movpiece] = ind;
+    } else if (turn == -1) {
+        if (moving) {
+            const moves = getMoves(selectedPiece);
+            if (moves.includes(ind) && board[ind] == 0) {
+                board[selectedPiece] = 0;
                 board[ind] = -1;
-                turn = 1;
+                selectedPiece = -1;
                 moving = false;
+                turn = 1;
                 drawBoard();
             }
-        }else{
-            if (board[ind] == -1){
+        } else {
+            if (board[ind] == -1) {
+                selectedPiece = ind;
                 moving = true;
-                drawBoard(moving,pos[movpiece]);
+                drawBoard(moving, selectedPiece);
             }
         }
     }
