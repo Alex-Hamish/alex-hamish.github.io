@@ -1,3 +1,5 @@
+const canvas = document.getElementById("game-canvas");
+
 let board = [
      0,
   0, 0, 0,
@@ -116,7 +118,6 @@ function getMoves(pos) {
 } // hardcoded ts :(
 
 function drawBoard(ismoving, pois) {
-    const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
 
     let moves = getMoves(pois)
