@@ -224,6 +224,7 @@ document.getElementById("game-canvas").addEventListener("click", function(){
                 board[ind] = 1;
                 turn = -1;
                 moving = false;
+                drawBoard();
             }
         }else{
             if (board[ind] == 1){
@@ -244,6 +245,7 @@ document.getElementById("game-canvas").addEventListener("click", function(){
                 board[ind] = -1;
                 turn = 1;
                 moving = false;
+                drawBoard();
             }
         }else{
             if (board[ind] == -1){
