@@ -214,11 +214,11 @@ document.getElementById("game-canvas").addEventListener("click", function(){
 
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    if (turn = 1){
+    if (turn == 1){
         let ind = getPiececlick(x,y);
         if (moving){
             let moves = getMoves(pos[0]);
-            if (moves.includes(ind)){
+            if (moves.includes(ind) && board[ind] == 0){
                 board[pos[0]] = 0;
                 pos[0] = ind;
                 board[ind] = 1;
@@ -231,14 +231,14 @@ document.getElementById("game-canvas").addEventListener("click", function(){
                 drawBoard(moving,pos[0]);
             }
         }
-    } else if (turn = -1){
+    } else if (turn == -1){
 
         let ind = getPiececlick(x,y);
         let movpiece = 0
 
         if (moving){
             let moves = getMoves(pos[movpiece]);
-            if (moves.includes(ind)){
+            if (moves.includes(ind) && board[ind] == 0){
                 board[pos[movpiece]] = 0;
                 pos[movpiece] = ind;
                 board[ind] = -1;
