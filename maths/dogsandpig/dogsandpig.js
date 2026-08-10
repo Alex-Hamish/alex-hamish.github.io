@@ -25,16 +25,16 @@ function getPiececlick(x,y){
         { x: 450, y: 400 },
         { x: 300, y: 550 }
     ];
-    i = 0
-    for (pos in positions){
-        let dist = Math.sqrt((x-pos.x)^2+(y-pos.y)^2);
+    for (let i = 0; i < positions.length; i++){
+        let pos = positions[i];
+        let dist = Math.sqrt((x-pos.x)**2+(y-pos.y)**2);
         if (dist <= 20){
             return i;
         }
-        i += 1;
     }
     return -1;
 }
+
 function getMoves(pos) {
     let moves = [];
     if (board[pos] == 0) {
