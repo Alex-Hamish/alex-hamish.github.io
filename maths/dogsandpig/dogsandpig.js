@@ -234,7 +234,7 @@ document.getElementById("game-canvas").addEventListener("click", function(){
     } else if (turn == -1){
 
         let ind = getPiececlick(x,y);
-        let movpiece = 0
+        let movpiece = pos.indexOf(ind);
 
         if (moving){
             let moves = getMoves(pos[movpiece]);
@@ -248,7 +248,6 @@ document.getElementById("game-canvas").addEventListener("click", function(){
         }else{
             if (board[ind] == -1){
                 moving = true;
-                movpiece =  pos.indexOf(ind);
                 drawBoard(moving,pos[movpiece]);
             }
         }
