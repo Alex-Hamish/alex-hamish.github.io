@@ -115,7 +115,7 @@ function getMoves(pos) {
     return moves;
 } // hardcoded ts :(
 
-function drawBoard(ismoving, pois) {
+function drawBoard(ismoving = false, pois = 0) {
     const ctx = canvas.getContext("2d");
 
     let moves = getMoves(pois)
@@ -248,10 +248,9 @@ document.getElementById("game-canvas").addEventListener("click", function(){
         }else{
             if (board[ind] == -1){
                 moving = true;
-                movpiece =  indexOf(ind, pos);
+                movpiece =  pos.indexOf(ind);
                 drawBoard(moving,pos[movpiece]);
             }
         }
     }
-    drawBoard();
 });
