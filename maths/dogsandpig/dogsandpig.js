@@ -220,7 +220,9 @@ document.getElementById("game-canvas").addEventListener("click", function(){
             let moves = getMoves(pos[0]);
             if (moves.includes(ind)){
                 board[pos[0]] = 0;
+                pos[0] = ind;
                 board[ind] = 1;
+                turn = -1;
                 moving = false;
             }
         }else{
@@ -229,5 +231,27 @@ document.getElementById("game-canvas").addEventListener("click", function(){
                 drawBoard(moving,pos[0]);
             }
         }
+    } else if (turn = -1){
+
+        let ind = getPiececlick(x,y);
+        let movpiece = 0
+
+        if (moving){
+            let moves = getMoves(pos[movpiece]);
+            if (moves.includes(ind)){
+                board[pos[movpiece]] = 0;
+                pos[movpiece] = ind;
+                board[ind] = -1;
+                turn = 1;
+                moving = false;
+            }
+        }else{
+            if (board[ind] == -1){
+                moving = true;
+                movpiece =  indexOf(ind, pos);
+                drawBoard(moving,pos[movpiece]);
+            }
+        }
     }
+    drawboard();
 });
