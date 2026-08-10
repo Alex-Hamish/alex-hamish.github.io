@@ -190,6 +190,7 @@ function drawBoard(ismoving = false, pois = 0) {
             ctx.arc(pos.x, pos.y, 24, 0, 2 * Math.PI);
             ctx.stroke();
             ctx.lineWidth = 1;
+            ctx.strokeStyle = "black";
         }
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, 20, 0, 2 * Math.PI);
