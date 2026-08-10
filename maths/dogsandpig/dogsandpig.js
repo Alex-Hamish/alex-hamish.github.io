@@ -28,14 +28,12 @@ function getPiececlick(x,y){
     i = 0
     for (pos in positions){
         let dist = Math.sqrt((x-pos.x)^2+(y-pos.y)^2);
-        if (dist > 20){
-            // oop
-            let hi = "hi";
-        } else {
+        if (dist <= 20){
             return i;
         }
         i += 1;
     }
+    return -1;
 }
 function getMoves(pos) {
     let moves = [];
