@@ -191,6 +191,11 @@ function drawBoard(ismoving, pois) {
     }
 }
 
+// GITHUB
+// I WANT YOU
+// TO BUILD THE JAVASCRIPT
+// IT'S NOT HARD, I KNOW YOU CAN DO IT
+
 
 drawBoard();
 
