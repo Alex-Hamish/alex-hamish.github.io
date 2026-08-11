@@ -262,6 +262,10 @@ document.getElementById("game-canvas").addEventListener("click", function(event)
                 moving = false;
                 turn = 1;
                 drawBoard();
+            } else if (board[ind] == -1) {
+                selectedPiece = ind;
+                moving = true;
+                drawBoard(moving, selectedPiece);
             }
         } else {
             if (board[ind] == -1) {
