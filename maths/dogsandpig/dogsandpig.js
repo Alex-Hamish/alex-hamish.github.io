@@ -244,6 +244,10 @@ document.getElementById("game-canvas").addEventListener("click", function(event)
                 moving = false;
                 turn = -1;
                 drawBoard();
+                if (board[10] == 1) {
+                    alert("Pig wins! Congrats! Click start to play again.");
+
+                }
             }
         } else {
             if (board[ind] == 1) {
@@ -252,6 +256,7 @@ document.getElementById("game-canvas").addEventListener("click", function(event)
                 drawBoard(moving, selectedPiece);
             }
         }
+        
     } else if (turn == -1) {
         if (moving) {
             const moves = getMoves(selectedPiece);
@@ -262,6 +267,13 @@ document.getElementById("game-canvas").addEventListener("click", function(event)
                 moving = false;
                 turn = 1;
                 drawBoard();
+                if (board[4] == 1 && board[5] == -1 && board[1] == -1 && board[7] == -1){
+                    alert("Dogs win! Congrats! Click start to play again.");
+                } else if (board[6] == 1 && board[5] == -1 && board[3] == -1 && board[9] == -1){
+                    alert("Dogs win! Congrats! Click start to play again.");
+                } else if (board[0] == 1 && board[1] == -1 && board[2] == -1 && board[3] == -1){
+                    alert("Dogs win! Congrats! Click start to play again.");
+                }
             } else if (board[ind] == -1) {
                 selectedPiece = ind;
                 moving = true;
