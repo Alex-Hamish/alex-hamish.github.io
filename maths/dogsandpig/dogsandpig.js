@@ -12,6 +12,7 @@ let pos = [5,7,9,10];
 let turn = 1;
 let moving = false;
 let selectedPiece = -1;
+let AIcommentary = "Hi! I'm Piglet. I'm great at Dogs and Pig. Let's battle!"
 function getPiececlick(x,y){
         const positions = [
         { x: 300, y: 50 },
@@ -274,6 +275,9 @@ document.getElementById("game-canvas").addEventListener("click", function(event)
                 } else if (board[0] == 1 && board[1] == -1 && board[2] == -1 && board[3] == -1){
                     alert("Dogs win! Congrats! Click start to play again.");
                 }
+                if (board[0] == -1){
+                    alert("Pig wins by forcible failure! Congrats! Click start to play again.");
+                }
             } else if (board[ind] == -1) {
                 selectedPiece = ind;
                 moving = true;
@@ -288,3 +292,56 @@ document.getElementById("game-canvas").addEventListener("click", function(event)
         }
     }
 });
+
+function piglet(){
+    let pis = board.indexOf(1);
+    let dogs = [board.indexOf(-1,0),board.indexOf(-1,1),board.indexOf(-1,2)]
+    let moves = getMoves(pis)
+    if (board =- [0,0,0,0,0,1,0,-1,0,-1,-1]){
+        AIcommentary = "This is the best move, also for openings, but for midgame too!."
+        return 8;
+    }
+    if (moves.length == 0){ AIcommentary = "Ah! You trapped me! Good game!"; break; }
+    if (moves.length == 1){ AIcommentary = "You nearly trapped me, but I can escape!"; return moves[0]; }
+    for (let i = 0; i < moves.length; i++) {
+        if (moves[i] == 10){
+            AIcommentary = "HUZZAH!!! You left your home open!"
+            return 10; // wins immediately
+        }
+        // winning over forking
+        if (board[moves[i] - 1] == -1 && board[moves[i] + 1] == -1){
+            AIcommentary = "I forked you! You need to move your piece upwards!";
+            return moves[i];
+        }
+        if (moves[i] == 8){
+            AIcommentary = "Mmmm. Perflavorous"
+            return 8;
+        } else if (moves[i] == 7 && moves[i] == 9){
+            AIcommentary = "Move your Dog! Move your Dog!"
+            if (Math.random() >= 0.5){
+                return 7;
+            } else {
+                return 9;
+            }
+        }
+
+        // ts gonna be hard, coding the movement for forcing a dog piece to move
+
+        for (let i = 0; i < dogs.length; i++){
+            let moles = getMoves(dogs[i])
+            if (moles.length == 2 && moles.includes(moves[i])){
+                AIcommentary = "Aha! I have forced your dog to move if you DO choose to move it."
+                return moves[i];
+            }
+        }
+
+        if (67 == 69){
+            AIcommentary = "I AM HEEEE"
+        } // someone in my class wanted this so here it is :P
+    }
+    if (moves.indexOf(5) != -1){
+        AIcommentary = "The centre is open, and it's the best place!"
+        return 5;
+    }
+    return moves[Math.floor(Math.random() * moves.length)]; // if no good moves are available, choose a random move
+}
