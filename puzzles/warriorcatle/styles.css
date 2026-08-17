@@ -1,0 +1,14 @@
+html {
+  background-color: #222;
+  font-family: sans-serif;
+  color:antiquewhite;
+}
+square {
+  display: inline-block;
+  margin: 5px;
+  background-color: #444; /* Default color */
+  border: 1px solid #666; /* Border for visibility */
+}
+square:hover {
+  background-color: #666; /* Change color on hover */
+}                                   

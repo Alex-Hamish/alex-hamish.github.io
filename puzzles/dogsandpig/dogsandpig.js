@@ -206,8 +206,6 @@ function drawBoard(ismoving = false, pois = 0) {
 // IT'S NOT HARD, I KNOW YOU CAN DO IT
 
 
-drawBoard();
-
 
 document.getElementById("start").addEventListener("click", function() {
     board = [
@@ -301,7 +299,7 @@ function piglet(){
         AIcommentary = "This is the best move, also for openings, but for midgame too!."
         return 8;
     }
-    if (moves.length == 0){ AIcommentary = "Ah! You trapped me! Good game!"; break; }
+    if (moves.length == 0){ AIcommentary = "Ah! You trapped me! Good game!"; return -1; }
     if (moves.length == 1){ AIcommentary = "You nearly trapped me, but I can escape!"; return moves[0]; }
     for (let i = 0; i < moves.length; i++) {
         if (moves[i] == 10){

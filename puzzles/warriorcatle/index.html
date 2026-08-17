@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles.css">
-    <title>maths</title>
+    <link rel="stylesheet" href="./styles.css">
+    <title>Warriorcatle</title>
 </head>
 <body>
-    <h1>Various Maths Games
+    <h1>Warriorcatle: A small wordle game.
             <div id="distrubhim">
-            <svg width="70px" height="70px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5; float: right;">
+            <svg width="70px" height="70px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="jhttp://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5; float: right;">
             <g transform="matrix(1.854333,0,0,1.854333,-52.629054,-308.808111)">
                 <g transform="matrix(1.020518,0,0,1.020518,-22.949822,-0.567733)">
                     <circle cx="320.858" cy="434.3" r="249.225" style="fill:url(#_Radial1);"/>
@@ -26,8 +26,26 @@
             </svg>
             </div>
     </h1>
-    <p>Welcome!</p>
-    <p>Here are some small maths games I made.</p>
-    <a href="/maths/dogsandpig/">dogs and pig</a>
+    <p>made for my friend (I AM NOT A FAN OF WARRIOR CATS, I AM SIMPLY MAKING THIS FOR THEM)</p>
+    <p>Rules:</p>
+    <ul>
+        <li>Guess the warrior cat in 8 tries.</li>
+        <li>Each guess must be a something.</li>
+        <li>After each guess, the color of the tiles will change to show how close your guess was to the word.</li>
+    </ul>
+    <p>You'll get an image of the cat (from the website, but if it doesn't exist it'll be from the fandom :D).</p>
+    <img src="https://static.wikia.nocookie.net/warriors/images/d/d1/Firestar.TNP-1.png/revision/latest?cb=20260701141435" alt="Firestar" width="200">
+    <p>^^^ if you see Firestar, uhhhhhhhhhhhhhhhhhhh please reload.</p>
+    <div id="game-container">
+        <span id="row1"><p id="1" class="square"></p></span>
+        <span id="row2"><p id="2" class="square"></p></span>
+        <span id="row3"><p id="3" class="square"></p></span>
+        <span id="row4"><p id="4" class="square"></p></span>
+        <span id="row5"><p id="5" class="square"></p></span>
+        <span id="row6"><p id="6" class="square"></span>
+        <span id="row7"><p id="7" class="square"></p></span>
+        <span id="row8"><p id="8" class="square"></span>
+    </div>
+    <script src="warriorcatle.js"></script>
 </body>
 </html>
