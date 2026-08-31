@@ -379,7 +379,7 @@ function piglet(){
         if (moves.includes(1) || moves.includes(2) || moves.includes(3)) {
             AIcommentary = "Fluencious!";
             let i = 0;
-            while (i < moves.length) {
+            while (i == 0) {
                 i = Math.floor(Math.random() * moves.length);
             }
             return i;
