@@ -1,4 +1,11 @@
 const canvas = document.getElementById("game-canvas");
+const startButton = document.getElementById("start");
+
+if (canvas) {
+    canvas.width = 600;
+    canvas.height = 600;
+    canvas.style.display = "block";
+}
 
 let board = [
      0,
@@ -118,9 +125,16 @@ function getMoves(pos) {
 } // hardcoded ts :(
 
 function drawBoard(ismoving = false, pois = 0) {
-    const ctx = canvas.getContext("2d");
+    if (!canvas) {
+        return;
+    }
 
-    let moves = getMoves(pois)
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+        return;
+    }
+
+    let moves = getMoves(pois);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -206,73 +220,89 @@ function drawBoard(ismoving = false, pois = 0) {
 // IT'S NOT HARD, I KNOW YOU CAN DO IT
 
 
-
-document.getElementById("start").addEventListener("click", function() {
-    board = [
-        0,
-     0, 0, 0,
-     0, 1, 0,
-    -1, 0, -1,
-        -1
-    ];
-
-    pos = [5,7,9,10];
-    turn = 1;
-    moving = false;
-    drawBoard(false, 0);
-});
-
-document.getElementById("game-canvas").addEventListener("click", function(event){
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const ind = getPiececlick(x,y);
-
-    if (ind < 0) {
-        // clicked outside a valid spot
+function initializeGame() {
+    if (!canvas || !startButton) {
         return;
     }
 
-    if (turn == 1) {
-        if (moving) {
-            const moves = getMoves(selectedPiece);
-            if (moves.includes(ind) && board[ind] == 0) {
-                board[selectedPiece] = 0;
-                board[ind] = 1;
-                selectedPiece = -1;
-                moving = false;
-                turn = -1;
-                drawBoard();
-                if (board[10] == 1) {
-                    alert("Pig wins! Congrats! Click start to play again.");
+    startButton.addEventListener("click", function() {
+        board = [
+            0,
+         0, 0, 0,
+         0, 1, 0,
+        -1, 0, -1,
+            -1
+        ];
 
-                }
-            }
-        } else {
-            if (board[ind] == 1) {
-                selectedPiece = ind;
-                moving = true;
-                drawBoard(moving, selectedPiece);
-            }
+        pos = [5,7,9,10];
+        turn = 1;
+        moving = false;
+        selectedPiece = -1;
+        drawBoard(false, 0);
+    });
+
+    canvas.addEventListener("click", function(event){
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const ind = getPiececlick(x,y);
+
+        if (ind < 0) {
+            // clicked outside a valid spot
+            return;
         }
-        
-    } else if (turn == -1) {
-        if (moving) {
-            const moves = getMoves(selectedPiece);
-            if (moves.includes(ind) && board[ind] == 0) {
-                board[selectedPiece] = 0;
-                board[ind] = -1;
-                selectedPiece = -1;
-                moving = false;
-                turn = 1;
-                drawBoard();
-                if (board[4] == 1 && board[5] == -1 && board[1] == -1 && board[7] == -1){
-                    alert("Dogs win! Congrats! Click start to play again.");
-                } else if (board[6] == 1 && board[5] == -1 && board[3] == -1 && board[9] == -1){
-                    alert("Dogs win! Congrats! Click start to play again.");
-                } else if (board[0] == 1 && board[1] == -1 && board[2] == -1 && board[3] == -1){
-                    alert("Dogs win! Congrats! Click start to play again.");
+
+        if (turn == 1) {
+            if (moving) {
+                const moves = getMoves(selectedPiece);
+                if (moves.includes(ind) && board[ind] == 0) {
+                    board[selectedPiece] = 0;
+                    board[ind] = 1;
+                    selectedPiece = -1;
+                    moving = false;
+                    turn = -1;
+                    drawBoard();
+                    if (board[10] == 1) {
+                        alert("Pig wins! Congrats! Click start to play again.");
+
+                    }
                 }
+            } else {
+                if (board[ind] == 1) {
+                    selectedPiece = ind;
+                    moving = true;
+                    drawBoard(moving, selectedPiece);
+                }
+            }
+        } else if (turn == -1) {
+            if (moving) {
+                const moves = getMoves(selectedPiece);
+                if (moves.includes(ind) && board[ind] == 0) {
+                    board[selectedPiece] = 0;
+                    board[ind] = -1;
+                    selectedPiece = -1;
+                    moving = false;
+                    turn = 1;
+                    drawBoard();
+                    if (board[4] == 1 && board[5] == -1 && board[1] == -1 && board[7] == -1){
+                        alert("Dogs win! Congrats! Click start to play again.");
+                    } else if (board[6] == 1 && board[5] == -1 && board[3] == -1 && board[9] == -1){
+                        alert("Dogs win! Congrats! Click start to play again.");
+                    } else if (board[0] == 1 && board[1] == -1 && board[2] == -1 && board[3] == -1){
+                        alert("Dogs win! Congrats! Click start to play again.");
+                    }
+                } else if (board[ind] == -1) {
+                    selectedPiece = ind;
+                    moving = true;
+                    drawBoard(moving, selectedPiece);
+                }
+            } else {
+                if (board[ind] == -1) {
+                    selectedPiece = ind;
+                    moving = true;
+                    drawBoard(moving, selectedPiece);
+                }
+
                 if (board[0] == -1){
                     alert("Pig wins by forcible failure! Congrats! Click start to play again.");
                 }
@@ -286,10 +316,11 @@ document.getElementById("game-canvas").addEventListener("click", function(event)
                 selectedPiece = ind;
                 moving = true;
                 drawBoard(moving, selectedPiece);
+
             }
         }
-    }
-});
+    });
+
 
 function piglet(){
     let pis = board.indexOf(1);
@@ -343,3 +374,13 @@ function piglet(){
     }
     return moves[Math.floor(Math.random() * moves.length)]; // if no good moves are available, choose a random move
 }
+
+    drawBoard();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeGame);
+} else {
+    initializeGame();
+}
+
