@@ -1,5 +1,7 @@
 const canvas = document.getElementById("game-canvas");
 const startButton = document.getElementById("start");
+const statusText = document.getElementById("game-status");
+const typeSelect = document.getElementById("type");
 
 if (canvas) {
     canvas.width = 600;
@@ -253,6 +255,19 @@ function initializeGame() {
         }
 
         if (turn == 1) {
+            if (typeSelect.value === "piglet" && turn == 1) {
+                const pigMove = piglet();
+                if (pigMove !== -1) {
+                    board[board.indexOf(1)] = 0; // Remove the pig from its current position
+                    board[pigMove] = 1; // Move the pig to the new position
+                    turn = -1; // Switch turn to dogs
+                    drawBoard();
+                    if (board[10] == 1) {
+                        alert("Pig wins! Congrats! Click start to play again.");
+                    }
+                    text.value = AIcommentary; // Update the commentary text
+                }
+            }
             if (moving) {
                 const moves = getMoves(selectedPiece);
                 if (moves.includes(ind) && board[ind] == 0) {
@@ -315,7 +330,7 @@ function piglet(){
     let pis = board.indexOf(1);
     let dogs = [board.indexOf(-1,0),board.indexOf(-1,1),board.indexOf(-1,2)]
     let moves = getMoves(pis)
-    if (board =- [0,0,0,0,0,1,0,-1,0,-1,-1]){
+    if (board == [0,0,0,0,0,1,0,-1,0,-1,-1]){
         AIcommentary = "This is the best move, also for openings, but for midgame too!."
         return 8;
     }
