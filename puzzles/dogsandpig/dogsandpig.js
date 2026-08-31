@@ -306,17 +306,6 @@ function initializeGame() {
                 if (board[0] == -1){
                     alert("Pig wins by forcible failure! Congrats! Click start to play again.");
                 }
-            } else if (board[ind] == -1) {
-                selectedPiece = ind;
-                moving = true;
-                drawBoard(moving, selectedPiece);
-            }
-        } else {
-            if (board[ind] == -1) {
-                selectedPiece = ind;
-                moving = true;
-                drawBoard(moving, selectedPiece);
-
             }
         }
     });
