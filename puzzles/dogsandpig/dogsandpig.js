@@ -364,13 +364,6 @@ function piglet(){
 
         // ts gonna be hard, coding the movement for forcing a dog piece to move
 
-        for (let i = 0; i < dogs.length; i++){
-            let moles = getMoves(dogs[i])
-            if (moles.length == 2 && moles.includes(moves[i])){
-                AIcommentary = "Aha! I have forced your dog to move if you DO choose to move it."
-                return moves[i];
-            }
-        }
 
         if (67 == 69){
             AIcommentary = "I AM HEEEE"
@@ -379,6 +372,18 @@ function piglet(){
     if (moves.indexOf(5) != -1){
         AIcommentary = "The centre is open, and it's the best place!"
         return 5;
+    }
+
+    // i won against it because it made a bad move (moving to 0 insted of 1, 2 or 3) so let's make it not do that
+    if (moves.includes(0)) {
+        if (moves.includes(1) || moves.includes(2) || moves.includes(3)) {
+            AIcommentary = "Fluencious!";
+            let i = 0;
+            while (i < moves.length) {
+                i = Math.floor(Math.random() * moves.length);
+            }
+            return i;
+        }
     }
     return moves[Math.floor(Math.random() * moves.length)]; // if no good moves are available, choose a random move
 }
