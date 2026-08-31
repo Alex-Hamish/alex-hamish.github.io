@@ -346,7 +346,7 @@ function piglet(){
             return 10; // wins immediately
         }
         // winning over forking
-        if (board[moves[i] - 1] == -1 && board[moves[i] + 1] == -1){
+        if (board[moves[i] - 1] == -1 && board[moves[i] + 1] == -1 && (board[moves[i]] == 2 || board[moves[i]] == 5 || board[moves[i]] == 8)){
             AIcommentary = "I forked you! You need to move your piece upwards!";
             return moves[i];
         }
@@ -375,16 +375,7 @@ function piglet(){
     }
 
     // i won against it because it made a bad move (moving to 0 insted of 1, 2 or 3) so let's make it not do that
-    if (moves.includes(0)) {
-        if (moves.includes(1) || moves.includes(2) || moves.includes(3)) {
-            AIcommentary = "Fluencious!";
-            let i = 0;
-            while (i == 0) {
-                i = Math.floor(Math.random() * moves.length);
-            }
-            return i;
-        }
-    }
+    
     return moves[Math.floor(Math.random() * moves.length)]; // if no good moves are available, choose a random move
 }
 
