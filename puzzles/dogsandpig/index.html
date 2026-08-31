@@ -35,12 +35,14 @@
         <li>The game also ends if a dog reaches the top space.</li>
     </ol>
     <div id="game-container">
+        <span>
         <img src="pig.avif" alt="Pig" width="100">
+        <textarea id="commentary" rows="1" cols="50" readonly></textarea>
+        </span>
         <canvas id="game-canvas" width="600" height="600"></canvas>
         <div id="game-controls">
             <button id="start">Start/Reset</button>
             <p id="game-status">Terrible. Awful. Reset now</p>
-            <textarea id="commentary" rows="4" cols="50" readonly></textarea>
             <select id="type">
                 <option value="friend">Play against a friend</option>
                 <option value="piglet">Play against piglet AI</option>

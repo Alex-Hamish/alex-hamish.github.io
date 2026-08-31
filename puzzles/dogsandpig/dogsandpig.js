@@ -2,6 +2,7 @@ const canvas = document.getElementById("game-canvas");
 const startButton = document.getElementById("start");
 const statusText = document.getElementById("game-status");
 const typeSelect = document.getElementById("type");
+const text = document.getElementById("commentary");
 
 if (canvas) {
     canvas.width = 600;
@@ -267,10 +268,10 @@ function initializeGame() {
                     }
                     text.value = AIcommentary; // Update the commentary text
                 }
-            }
-            if (moving) {
-                const moves = getMoves(selectedPiece);
-                if (moves.includes(ind) && board[ind] == 0) {
+            } else {
+                if (moving) {
+                    const moves = getMoves(selectedPiece);
+                    if (moves.includes(ind) && board[ind] == 0) {
                     board[selectedPiece] = 0;
                     board[ind] = 1;
                     selectedPiece = -1;
@@ -281,12 +282,13 @@ function initializeGame() {
                         alert("Pig wins! Congrats! Click start to play again.");
 
                     }
-                }
-            } else {
-                if (board[ind] == 1) {
-                    selectedPiece = ind;
-                    moving = true;
-                    drawBoard(moving, selectedPiece);
+                    }
+                } else {
+                    if (board[ind] == 1) {
+                        selectedPiece = ind;
+                        moving = true;
+                        drawBoard(moving, selectedPiece);
+                    }
                 }
             }
         } else if (turn == -1) {
@@ -334,6 +336,8 @@ function piglet(){
         AIcommentary = "This is the best move, also for openings, but for midgame too!."
         return 8;
     }
+    // quickly remove any moves that are not valid (i.e. occupied by a dog)
+    moves = moves.filter(move => board[move] == 0);
     if (moves.length == 0){ AIcommentary = "Ah! You trapped me! Good game!"; return -1; }
     if (moves.length == 1){ AIcommentary = "You nearly trapped me, but I can escape!"; return moves[0]; }
     for (let i = 0; i < moves.length; i++) {
