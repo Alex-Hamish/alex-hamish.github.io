@@ -34,7 +34,7 @@ function makefunicode(text){
     ctx.strokeStyle = "white";
     ctx.strokeRect(1.5, 1.5, 6, 6);
     ctx.fillStyle = "white";
-    ctx.fillRect(3.5, 3.5, 4, 4);
+    ctx.fillRect(3, 3, 4, 4);
 
 
 
