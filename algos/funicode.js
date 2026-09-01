@@ -33,11 +33,12 @@ function makefunicode(text){
     ctx.lineWidth = 0;
     ctx.strokeStyle = "white";
     ctx.strokeRect(1.5, 1.5, 6, 6);
-    ctx.strokeRect(3.5, 3.5, 4, 4)
+    ctx.fillStyle = "white";
+    ctx.fillRect(3.5, 3.5, 4, 4);
 
 
 
-    console.log("added thingy")
+    console.log("added thingy");
     // Display it
     document.body.appendChild(canvas);
 }
