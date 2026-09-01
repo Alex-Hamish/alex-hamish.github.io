@@ -30,7 +30,7 @@ function makefunicode(text){
     ctx.fillRect(0, 0, 32, 32);
 
     // Draw the funicode
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 0;
     ctx.strokeStyle = "white";
     ctx.strokeRect(2, 2, 7, 7);
 
