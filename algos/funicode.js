@@ -13,7 +13,7 @@ sumbit.addEventListener("click", function(){
     } else {
         currversion = choice.value;
     }
-    makefunicode(textinput.innerHTML);
+    makefunicode(textinput.value);
     console.log("funicode has been made")
 
 
@@ -26,6 +26,10 @@ function makefunicode(text){
     canvas.width = 32;
     canvas.height = 32;
 
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, 32, 32);
+
+    // Draw the funicode
     ctx.lineWidth = 1;
     ctx.strokeStyle = "white";
     ctx.strokeRect(1, 1, 6, 6);
