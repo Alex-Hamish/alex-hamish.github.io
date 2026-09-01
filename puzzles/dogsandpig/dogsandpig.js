@@ -340,7 +340,7 @@ function piglet(){
     moves = moves.filter(move => board[move] == 0);
     if (moves.length == 0){ AIcommentary = "Ah! You trapped me! Good game!"; return -1; }
     if (moves.length == 1){ AIcommentary = "You nearly trapped me, but I can escape!"; return moves[0]; }
-    if (moves.includes(10){ AIcommentary = "HUZZAH!!! You left your home open!"; return 10; }
+    if (moves.includes(10)){ AIcommentary = "HUZZAH!!! You left your home open!"; return 10; }
     for (let i = 0; i < moves.length; i++) {
         // winning over forking
         if (board[moves[i] - 1] == -1 && board[moves[i] + 1] == -1 && (board[moves[i]] == 2 || board[moves[i]] == 5 || board[moves[i]] == 8)){
