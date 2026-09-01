@@ -33,8 +33,7 @@ function makefunicode(text){
     ctx.lineWidth = 0;
     ctx.strokeStyle = "white";
     ctx.strokeRect(1.5, 1.5, 5, 5);
-    ctx.fillStyle = "white";
-    ctx.fillRect(3, 3, 3, 3);
+    ctx.strokeRect(3, 3, 3, 3);
 
 
 
