@@ -6,6 +6,61 @@ let currtext = "";
 let commhist = [];
 let currcom = 0;
 let files = {};
+let updatedict = {version: "1.0.4", OSType: "Yek"};
+let callcommands = {
+    "test":{
+        "name": "test",
+        "magicword": "!js!", // this is a js command. it is a js function
+        "content": async function() {
+            AddText("This is a test command.\n");
+            AddText("This command is used to test the functionality of the shell.\n");
+            AddText("Test 1 (Text): Passed\n");
+            AddText("Test 2 (Command): Passed\n");
+            if (dict) {
+                AddText("Test 3 (Variable): Passed\n");
+            } else {
+                AddText("Test 3 (Variable): Failed\n");
+            }
+            if (files) {
+                AddText("Test 4 (File): Passed\n");
+            } else {
+                AddText("Test 4 (File): Failed\n");
+                AddText("Also how did you do this?")
+                AddText("Did you like... delete the files object? If so, you are a hacker and you should be ashamed of yourself.")
+            }
+            // yesno test
+            AddText("Test 5 (Yes/No): Please type 'y' or 'n' and press Enter.\n");
+            const ynresult = await yesno();
+            if (ynresult !== undefined) {
+                AddText("Test 5 (Yes/No): Failed.\n");
+                AddText("This will result in a false positive. It is a failure.")
+            }
+            if (ynresult) {
+                AddText("You typed 'y'. Test 5 (Yes/No): Passed\n");
+            } else {
+                AddText("You typed 'n'. Test 5 (Yes/No): Passed\n");
+            }
+            // MORE TESTS!!!!
+            if (commhist) {
+                AddText("Test 6 (Command History): Passed\n");
+            } else {
+                AddText("Test 6 (Command History): Failed\n");
+            }
+
+            AddText("All tests completed.\n");
+        }
+    },
+    
+    "input": {
+        "name": "input",
+        "magicword": "!js!",
+        "content": async function() {
+            AddText("Please type something and press Enter: ");
+            const userInput = await getInput();
+            AddText("\nYou typed: " + userInput + "\n");
+        }
+    }
+};
 
 let yn = false;
 let ynresolve = false;
@@ -31,8 +86,17 @@ function setWaiting(value) {
     }
 }
 
-
-
+function getInput() {
+    return new Promise(resolve => {
+        const inputHandler = (e) => {
+            if (e.key === "Enter") {
+                input.removeEventListener("keydown", inputHandler);
+                resolve(inp);
+            }
+        };
+        input.addEventListener("keydown", inputHandler);
+    });
+}
 
 
 
@@ -64,10 +128,9 @@ let examplefile2 = {
     }
 }
 
-let dict = {
-    OSType: "Yek", // Yek... hamnurber.
-    version: "1.0.3" // these two are hardcoded. You can only change them with special commands :P
-}; // 1.0.0 didn't even have input, and 1.0.1 had echo only.
+
+
+// 1.0.4: updates etc
 
 function AddText(strg){
     let f = ansi_up.ansi_to_html(strg); // Convert ANSI to HTML
@@ -87,9 +150,16 @@ function load(){
     } else {
         files[examplefile.magicword] = examplefile;
         files[examplefile2.magicword] = examplefile2;
+        
     }
     if (loaded) {
-        dict = JSON.parse(loaded);
+        let dict = JSON.parse(loaded);
+        
+    } else {
+        let dict = {
+            OSType: "Yek", // Yek... hamnurber.
+            version: "1.0.3" // these two are hardcoded. You can only change them with special commands :P
+        }; // 1.0.0 didn't even have input, and 1.0.1 had echo only. 1.0.2 i forgot and 1.0.3 is the version that added files
     }
 }
 
@@ -220,9 +290,10 @@ Arguments are read normally:
 simple.
 help prints the commands, man prints a guide on commands
 you can also set variables by using "variable = value" and get them by using "variable"
-for example, "version" will return the version of SAL, and "version = 1.0.3" will set the version to 1.0.3, though this value is readonly and cannot be changed. 
+for example, "version" will return the version of SAL, and "version = 1.0.4" will set the version to 1.0.4, though this value is readonly and cannot be changed. 
 You can also use "variables" to see all variables.
-
+IF you have a variable with the same name as a command, the command will be prioritized over the variable. This is because commands are more important than variables.
+To counter this, you can add a dollar sign ($) before the variable name to get the variable instead of the command. For example, "$version" will return the version variable instead of the version command.
 `)
             break;
         case "help":
@@ -239,6 +310,7 @@ You can also use "variables" to see all variables.
             AddText("unzip: Unzips a zip file into a folder. Usage: unzip <zip_file_name>\n");
             AddText("zip: Zips a folder into a zip file. Usage: zip <folder_name>\n");
             AddText("backup: Creates a backup of the current variables and files.\n");
+            AddText("update: Checks for updates and updates the version and OSType if needed.\n");
             AddText("man: Displays the manual.\n");
             AddText("help: Displays this help message.\n");
             break;
@@ -363,14 +435,33 @@ You can also use "variables" to see all variables.
                         AddText("Aborted adding example files.\n");
                     }
                     break;
-                case "help":
-                    AddText("Debug commands:\n");
-                    AddText("debug (*EXAMPLE*): Adds example files to the file system.\n");
-                    AddText("debug version: Displays the version.\n");
-                    AddText("debug help: Displays this help message.\n");
-                    break;
                 case "version":
                     AddText("Debug version: 1.0.0\n");
+                    break;
+                case "bin":
+                    AddText("ARE YOU SURE? THIS WILL RESET YOUR BIN FOLDER. (y/n)\n");
+                    const b = await yesno();
+                    if (b) {
+                        files.bin = {};
+                        files.bin = {
+                            "name": "bin",
+                            "magicword": "!f!"
+                        };
+                        files.bin.content = callcommands; // reset the bin folder to the default commands
+                        AddText("Bin folder reset.\n");
+                    } else {
+                        AddText("Aborted resetting bin folder.\n");
+                    }
+                    break;
+                case "clearfiles18":
+                    AddText("ARE YOU SURE? THIS WILL DELETE ALL YOUR FILES. (y/n)\n");
+                    const c = await yesno();
+                    if (c) {
+                        files = {};
+                        AddText("All files deleted.\n");
+                    } else {
+                        AddText("Aborted deleting all files.\n");
+                    }
                     break;
                 default:
                     AddText("Unknown debug command: " + getarg(strg, 1) + "\n");
@@ -388,7 +479,48 @@ You can also use "variables" to see all variables.
             downloadAnchorNode.remove();
             // thank you ProstoNekitos/burning_dumpster for this code.
             break;
-        default:
+        case "update":
+            AddText("Checking for updates...\n");
+            if (dict.version !== updatedict.version) {
+                AddText("Update available: " + updatedict.version + "\n");
+                AddText("Updating...\n");
+                dict.version = updatedict.version;
+            }
+            if (dict.OSType !== updatedict.OSType) {
+                AddText("Update available: " + updatedict.OSType + "\n");
+                AddText("Updating...\n");
+                dict.OSType = updatedict.OSType;
+            }
+            default:
+            if (opcode.startsWith("$")) {
+                let varName = opcode.slice(1);
+                if (varName in dict) {
+                    switch(getarg(strg, 1)){
+                        case "=":
+                            if (varName == "version" || varName == "OSType") { // hardcoded
+                                AddText("You cannot edit a readonly value. You have to change it via other methods.\n")
+                            } else {
+                                dict[varName] = getarg(strg, 2)
+                            }
+                            break;
+                        default:
+                            AddText(dict[varName] + "\n");
+                    }
+                } else {
+                    AddText("Unknown variable: " + varName + "\n");
+                }
+            } else {
+                let a = false;
+            for (const [key, file] of Object.entries(files.bin)) {
+                if (file.name === getarg(strg, 0) && (file.magicword === "!js!" || file.magicword === "!salscript!")) {
+                    AddText("Executing command from bin: " + opcode + "\n");
+                    
+                    // here i would execute the command.
+                    break;
+                }
+            }
+
+
             if(getarg(strg, 0) in dict){
                 if(getarg(strg,1) == undefined){
                     AddText(dict[getarg(strg, 0)] + "\n")
@@ -411,6 +543,7 @@ You can also use "variables" to see all variables.
                     AddText("Unknown command or variable:" + " " + opcode + "\n");
                 }
             }
+        }
     }
 }
 
