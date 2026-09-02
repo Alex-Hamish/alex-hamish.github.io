@@ -243,14 +243,6 @@ function exe(line) {
             regs[instrs[2]] = (value >> 8) & 0xFF;
             regs[instrs[3]] = value & 0xFF;
             break;
-        case "DEF":
-            // AAAAAA
-            functemp.name = s1;
-            functemp.par = {};
-            break;
-        case "PAR":
-            functemp.par[s2]=s1;
-            break;
         default:
             console.error(`Unknown opcode: ${opcode}`);
             running = false;
